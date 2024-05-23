@@ -7,6 +7,8 @@ import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
 
+
+
 const AppRouter = () => {
   return useRoutes([
     {
