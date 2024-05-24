@@ -1,10 +1,12 @@
+// CartView.jsx
+
 import React, { useState } from 'react';
 import CartItem from './CartItem';
 
 const CartView = () => {
     const [cart, setCart] = useState([
-        { id: 1, name: 'Product 1', price: 10, quantity: 2 },
-        { id: 2, name: 'Product 2', price: 20, quantity: 1 },
+        { id: 1, name: 'Product 1', price: 10, quantity: 2, size: 'M', color: 'red' },
+        { id: 2, name: 'Product 2', price: 20, quantity: 1, size: 'L', color: 'blue' },
     ]);
 
     const handleUpdateQuantity = (productId, newQuantity) => {
@@ -12,6 +14,20 @@ const CartView = () => {
             prevCart.map(item =>
                 item.id === productId ? { ...item, quantity: newQuantity } : item
             )
+        );
+    };
+
+    const handleUpdateAttribute = (productId, attributeName, newValue) => {
+        setCart(prevCart =>
+            prevCart.map(item =>
+                item.id === productId ? { ...item, [attributeName]: newValue } : item
+            )
+        );
+    };
+
+    const handleRemoveProduct = (productId) => {
+        setCart(prevCart =>
+            prevCart.filter(item => item.id !== productId)
         );
     };
 
@@ -27,6 +43,8 @@ const CartView = () => {
                     key={item.id}
                     product={item}
                     onUpdateQuantity={handleUpdateQuantity}
+                    onUpdateAttribute={handleUpdateAttribute}
+                    onRemoveProduct={handleRemoveProduct}
                 />
             ))}
             <div>Total: ${calculateTotal(cart)}</div>
