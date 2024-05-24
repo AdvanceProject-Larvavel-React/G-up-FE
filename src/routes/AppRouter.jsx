@@ -7,6 +7,9 @@ import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
 
+
+import Cart from "../components/Cart.jsx";
+
 const AppRouter = () => {
   return useRoutes([
     {
@@ -16,10 +19,15 @@ const AppRouter = () => {
     {
       path: "/hello-word",
       element: (
-        <>
-          <h2>Hello Word</h2>
-        </>
+          <>
+            <h2>Hello Word</h2>
+          </>
       ),
+    },
+    // Router for Cart
+    {
+      path: RoutePath.CART_ROUTE, // Assuming you have defined CART_ROUTE in RoutePath
+      element: <Cart />,
     },
     {
       path: RoutePath.ERR_403_ROUTE,
