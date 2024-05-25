@@ -1,0 +1,22 @@
+
+.custom-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffe6f0;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #ffccde;
+}
+
+.shopping-cart-icon {
+    fill: #ff0066;
+    width: 24px;
+    height: 24px;
+}

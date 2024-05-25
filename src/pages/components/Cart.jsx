@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useCart } from '../context/CartContext.jsx';
+import { useCart } from '../../context/CartContext.jsx';
 
 const CartContainer = styled.div`
     padding: 20px;

@@ -1,14 +1,16 @@
-import { Navigate, useRoutes } from "react-router-dom";
-import { AccessDeniedPage } from "../global-components/errors/AccessDeniedPage";
-import { InvalidDataErrorPage } from "../global-components/errors/InvalidDataErrorPage";
-import { NetworkErrorPage } from "../global-components/errors/NetworkErrorPage";
-import { NotFoundPage } from "../global-components/errors/NotFoundPage";
-import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
-import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
-import RoutePath from "./RoutePath";
+// src/router/AppRouter.jsx
+import React from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
+import { AccessDeniedPage } from '../global-components/errors/AccessDeniedPage';
+import { InvalidDataErrorPage } from '../global-components/errors/InvalidDataErrorPage';
+import { NetworkErrorPage } from '../global-components/errors/NetworkErrorPage';
+import { NotFoundPage } from '../global-components/errors/NotFoundPage';
+import { ServerErrorPage } from '../global-components/errors/ServerErrorPage';
+import { SoftwareErrorPage } from '../global-components/errors/SoftwareErrorPage';
+import RoutePath from './RoutePath';
 
+import Cart from '../pages/components/Cart.jsx';
 
-import Cart from "../components/Cart.jsx";
 
 const AppRouter = () => {
   return useRoutes([
@@ -17,16 +19,15 @@ const AppRouter = () => {
       element: <Navigate to="/hello-word" />,
     },
     {
-      path: "/hello-word",
+      path: '/hello-word',
       element: (
           <>
-            <h2>Hello Word</h2>
+            <h2>Hello World</h2>
           </>
       ),
     },
-    // Router for Cart
     {
-      path: RoutePath.CART_ROUTE, // Assuming you have defined CART_ROUTE in RoutePath
+      path: RoutePath.CART_ROUTE,
       element: <Cart />,
     },
     {

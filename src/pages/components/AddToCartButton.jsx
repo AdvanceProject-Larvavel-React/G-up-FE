@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useCart } from '../context/CartContext.jsx';
+import { useCart } from '../../context/CartContext.jsx';
 
 const Button = styled.button`
     padding: 10px 20px;
