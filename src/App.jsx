@@ -1,16 +1,13 @@
-// App.js
 
-import CustomButton from '../components/CustomButton.jsx'
-
-
+import CustomButton from "./modules/DetailProduct/components/CustomButton";
 
 const App = () => {
-    return (
-        <div className="App">
-            <h1>My Shopping Cart</h1>
-            <CustomButton />
-        </div>
-    );
+  return (
+    <div>
+      <h1>My App</h1>
+      <CustomButton />
+    </div>
+  );
 };
 
 export default App;

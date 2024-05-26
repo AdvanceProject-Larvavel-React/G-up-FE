@@ -1,5 +1,4 @@
-// src/router/AppRouter.jsx
-import React from 'react';
+
 import { Navigate, useRoutes } from 'react-router-dom';
 import { AccessDeniedPage } from '../global-components/errors/AccessDeniedPage';
 import { InvalidDataErrorPage } from '../global-components/errors/InvalidDataErrorPage';
@@ -9,8 +8,8 @@ import { ServerErrorPage } from '../global-components/errors/ServerErrorPage';
 import { SoftwareErrorPage } from '../global-components/errors/SoftwareErrorPage';
 import RoutePath from './RoutePath';
 
-import Cart from '../pages/components/Cart.jsx';
-
+import Cart from '../pages/components/Cart';
+import DetailProduct from '../pages/DetailProduct';
 
 const AppRouter = () => {
   return useRoutes([
@@ -20,11 +19,11 @@ const AppRouter = () => {
     },
     {
       path: '/hello-word',
-      element: (
-          <>
-            <h2>Hello World</h2>
-          </>
-      ),
+      element: <h2>Hello World</h2>,
+    },
+    {
+      path: '/detail-product/:id',
+      element: <DetailProduct />, 
     },
     {
       path: RoutePath.CART_ROUTE,
