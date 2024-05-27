@@ -1,14 +1,11 @@
-import './App.css'
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from '../src/routes/AppRouter';
-function App() {
+import BuyButton from './modules/DetailProduct/components/BuyButton.jsx';
+const App = () => {
   return (
-      <Router>
-      <div className="app">
-        <AppRouter />
-      </div>
-      </Router>
-  )
-}
+    <div>
+    
+      <BuyButton />
+    </div>
+  );
+};
 
 export default App;
