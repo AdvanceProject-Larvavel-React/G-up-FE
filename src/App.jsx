@@ -1,10 +1,10 @@
-import { ProductQuantity } from "./modules/ProductQuantity/Index";
+import ProductQuantity from './modules/ProductQuantity/components/ProductQuantity';
 
 const App = () => {
   return (
     <div>
-      <h1>My App</h1>
-      <ProductQuantity/>
+    
+      <ProductQuantity />
     </div>
   );
 };
