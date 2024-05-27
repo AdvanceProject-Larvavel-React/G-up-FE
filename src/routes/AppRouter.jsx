@@ -8,7 +8,7 @@ import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage
 import RoutePath from "./RoutePath";
 
 
-import Cart from "../components/Cart.jsx";
+import ProductQuantity from 'src/modules/ProductQuantity/Index.jsx';
 
 const AppRouter = () => {
   return useRoutes([
@@ -24,10 +24,13 @@ const AppRouter = () => {
           </>
       ),
     },
-    // Router for Cart
     {
-      path: RoutePath.CART_ROUTE, // Assuming you have defined CART_ROUTE in RoutePath
-      element: <Cart />,
+      path: '/quantity/:id',
+      element: <ProductQuantity />, 
+    },
+  
+    {
+      path: RoutePath.CART_ROUTE, 
     },
     {
       path: RoutePath.ERR_403_ROUTE,

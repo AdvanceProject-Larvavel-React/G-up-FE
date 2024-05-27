@@ -1,13 +1,12 @@
-import React from 'react';
-import QuantitySelector from './QuantitySelector';
+import { ProductQuantity } from "./modules/ProductQuantity/Index";
 
 const App = () => {
-    return (
-        <div>
-            <h1>Quantity Selector</h1>
-            <QuantitySelector />
-        </div>
-    );
+  return (
+    <div>
+      <h1>My App</h1>
+      <ProductQuantity/>
+    </div>
+  );
 };
 
 export default App;
