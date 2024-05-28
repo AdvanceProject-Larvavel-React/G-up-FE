@@ -1,14 +1,11 @@
-import './App.css'
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from '../src/routes/AppRouter';
-function App() {
+import OlayProductPage from './modules/DetailProduct/components/OlayProductPage.jsx';
+const App = () => {
   return (
-      <Router>
-      <div className="app">
-        <AppRouter />
-      </div>
-      </Router>
-  )
-}
+    <div>
+    
+      <OlayProductPage />
+    </div>
+  );
+};
 
 export default App;
