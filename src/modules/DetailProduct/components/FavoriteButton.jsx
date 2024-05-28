@@ -1,11 +1,12 @@
-
 import '../styles/FavoriteButton.css';
-import heartEmoji from '../../../assets/images/love-03.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 const FavoriteButton = () => {
   return (
     <button className="favorite-button">
       <div className="favorite-button-heart">
-        <img className="favorite-button-image" src={heartEmoji} alt="Heart Icon" />
+        <FontAwesomeIcon icon={faHeart} className="favorite-button-icon" style={{ color: 'red' }} />
       </div>
       <div className="favorite-button-text">Favorite</div>
     </button>
