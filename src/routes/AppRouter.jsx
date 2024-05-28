@@ -24,14 +24,7 @@ const AppRouter = () => {
         </>
       ),
     },
-    {
-      path: "/search",
-      element: (
-        <>
-          <SearchBar />
-        </>
-      ),
-    },
+   
     {
       path: RoutePath.ERR_403_ROUTE,
       element: <AccessDeniedPage />,
