@@ -1,9 +1,9 @@
-import OlayProductPage from './modules/DetailProduct/components/OlayProductPage.jsx';
+import ProductImage from './modules/DetailProduct/components/ProductImage.jsx';
 const App = () => {
   return (
     <div>
     
-      <OlayProductPage />
+      <ProductImage />
     </div>
   );
 };
