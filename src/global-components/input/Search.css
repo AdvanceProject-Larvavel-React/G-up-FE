@@ -1,0 +1,23 @@
+
+.ant-input-affix-wrapper {
+    background-color: rgb(250, 246, 246);
+    border-width: 1,5px;
+    border-color: rgb(16, 16, 16);
+}
+.ant-btn {
+    border-width: 1.5px;
+    
+    border-color: rgb(16, 16, 16);
+}
+
+.ant-btn:hover .anticon {
+    transform: scale(1.2);
+    
+    transition: transform 0.3s ease;
+    color: green;
+
+    
+}
+
+
+

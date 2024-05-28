@@ -6,6 +6,9 @@ import { NotFoundPage } from "../global-components/errors/NotFoundPage";
 import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
+import SearchBar from "../global-components/input/SearchBar";
+
+
 
 const AppRouter = () => {
   return useRoutes([
@@ -18,6 +21,14 @@ const AppRouter = () => {
       element: (
         <>
           <h2>Hello Word</h2>
+        </>
+      ),
+    },
+    {
+      path: "/search",
+      element: (
+        <>
+          <SearchBar />
         </>
       ),
     },

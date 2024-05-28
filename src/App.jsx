@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AppRouter from '../src/routes/AppRouter';
 function App() {
   return (
-      <Router>
+    <Router>
       <div className="app">
         <AppRouter />
       </div>
