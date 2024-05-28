@@ -1,9 +1,9 @@
-import FavoriteButton from './modules/DetailProduct/components/FavoriteButton.jsx';
+import OlayProductPage from './modules/DetailProduct/components/OlayProductPage.jsx';
 const App = () => {
   return (
     <div>
     
-      <FavoriteButton />
+      <OlayProductPage />
     </div>
   );
 };
