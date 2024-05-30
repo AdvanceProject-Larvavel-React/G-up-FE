@@ -1,6 +1,5 @@
 import PublicLayout from "../layouts/PublicLayout";
 import RoutePath from "./RoutePath";
-
 const publicRoutes = [
   {
     path: '/',
@@ -15,10 +14,6 @@ const publicRoutes = [
         )
       }
     ],
-  },
-  {
-    path: '/login',
-    element: <div>Login page</div>
   }
 ];
 export default publicRoutes;
