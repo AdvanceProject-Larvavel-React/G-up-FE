@@ -1,0 +1,65 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 67px;
+  padding-bottom:60px;
+    /* Căn giữa theo chiều ngang */
+    text-align: center;
+    position: relative;
+    /* Thêm thuộc tính position */
+}
+
+.search-input {
+    border: none;
+    background-color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    width: 40%;
+    border-radius: 5px;
+    z-index: 1;
+    /* Đẩy lên phía trên */
+}
+
+.search-button {
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+.icon1 {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    align-items: center;
+    background-color: orange;
+    border-radius: 5px;
+    width: 80px;
+    
+    margin-left: 35%;
+    position: absolute;
+    /* Thêm thuộc tính position */
+    top: 50%;
+    /* Đặt ở giữa theo chiều dọc */
+    transform: translateY(-75%);
+    /* Dịch chuyển lên trên 50% */
+    z-index: 2;
+    /* Đẩy lên phía trên */
+}
+.icon1:hover{
+    background-color: rgb(247, 207, 98);
+    width: 85px;
+}
+.text{
+    justify-content: center;
+    width: 50%;
+    height: 60px;
+    background-color: rgb(234, 225, 214);
+    color: #000;
+}
+.search-input{
+    margin-top: 40px;
+}

@@ -1,0 +1,79 @@
+.header-logo {
+    position: absolute;
+    left: 70px;
+    /* Adjust as needed */
+   
+   
+    height: 80px;
+    /* Adjust the size as needed */
+}
+.title{
+    padding-right: 880px;
+    margin-top: 1px;
+    
+}
+.content1{
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+}
+.category{
+    font-size:x-large;
+    padding-left: 95px;
+}
+.category-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    /* Optional: border for better visibility */
+    padding: 10px;
+    background-color: #f9f9f9;
+    /* Optional: background color */
+}
+
+.category-image {
+    width: 100px;
+    /* Adjust size as needed */
+    height: auto;
+    margin-right: 20px;
+    /* Space between image and title */
+}
+.ant-row {
+    margin-top: -10px;
+}
+
+.category-title {
+    font-size: 1.2em;
+    color: #000;
+    font-weight: bold;
+}
+.cate{
+    margin-left: 130px;
+    margin-top: 10px;
+}
+.item{
+    width: 340px;
+    height: 100px;
+    
+    
+    
+}
+.category-image{
+    width: 80px;
+    height: 80px;
+}
+.category-item{
+border-radius: 10px;
+margin-top: 40px;
+
+}
+.ant-layout{
+    background-color: rgb(255, 255, 255);
+}
+.ant-layout-footer {
+   margin-top: 50px;
+   border-radius: 5px;
+   width: 100%;
+}

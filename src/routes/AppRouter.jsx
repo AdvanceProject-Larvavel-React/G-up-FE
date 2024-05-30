@@ -6,7 +6,9 @@ import { NotFoundPage } from "../global-components/errors/NotFoundPage";
 import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
-import ApplyVoucher from "../global-components/button/ApplyVoucher"
+import Support from "../modules/support";
+
+
 
 const AppRouter = () => {
   return useRoutes([
@@ -15,10 +17,10 @@ const AppRouter = () => {
       element: <Navigate to="/hello-word" />,
     },
     {
-      path: "/vouche",
+      path: "/support",
       element: (
         <>
-          <ApplyVoucher/>
+          <Support/>
         </>
       ),
     },

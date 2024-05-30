@@ -1,0 +1,16 @@
+.foot{
+    font-size: 17px;
+}
+.foot1 {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+.number{
+    background-color: rgb(255, 255, 255);
+    width: 150px;
+}
+.email{
+    background-color: rgb(255, 255, 255);
+    width: 170px;
+}
