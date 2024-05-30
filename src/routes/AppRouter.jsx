@@ -6,6 +6,7 @@ import { NotFoundPage } from "../global-components/errors/NotFoundPage";
 import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
+import ApplyVoucher from "../global-components/button/ApplyVoucher"
 
 const AppRouter = () => {
   return useRoutes([
@@ -14,13 +15,14 @@ const AppRouter = () => {
       element: <Navigate to="/hello-word" />,
     },
     {
-      path: "/hello-word",
+      path: "/vouche",
       element: (
         <>
-          <h2>Hello Word</h2>
+          <ApplyVoucher/>
         </>
       ),
     },
+  
     {
       path: RoutePath.ERR_403_ROUTE,
       element: <AccessDeniedPage />,
