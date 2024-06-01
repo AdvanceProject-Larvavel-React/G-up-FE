@@ -1,21 +1,40 @@
-import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
-import PropTypes from 'prop-types';
-const PrivateLayout = ({ requiredRole }) => {
-  const { token, user } = useSelector((state) => state.auth);
-  if (!token) {
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+const PrivateLayout = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Render loading indicator
+  }
+
+  if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
-  if (requiredRole && user?.data.role_id === requiredRole) {
-    return <Navigate to="/unauthorized" />;
-  }
+
+  if (location.pathname.includes("/dashboard")) {
+    return (
+      <div>
+        <a>Dashboard Layout</a>
+        <Outlet />
+      </div>
+    );
+  } 
+
   return (
-    <>
-      <Outlet/>
-    </>
+    <div>
+      Private Layout Default
+      <Outlet />
+    </div>
   );
 };
-PrivateLayout.propTypes = {
-  requiredRole: PropTypes.string,
-};
+
 export default PrivateLayout;

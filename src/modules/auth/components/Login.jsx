@@ -1,19 +1,10 @@
 import { Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../redux/features/auth/authSlice";
-import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { status, error, token, user} = useSelector((state) => state.auth);
-  if (token && user?.data.role_id === 2) {
-    return <Navigate to="/dashboard" />;
-  }
-  else if (token && user?.data.role_id === 1) {
-    return <Navigate to="/" />;
-  } else if (token && user?.data.role_id === 3) {
-    return <Navigate to="/store" />;
-  }
+  const { status, error} = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
