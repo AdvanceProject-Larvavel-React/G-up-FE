@@ -1,8 +1,9 @@
 import { Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../redux/features/auth/authSlice";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const { status, error} = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
@@ -14,6 +15,7 @@ const Login = () => {
   };
   return (
     <div>
+      <Link to="/auth/sign-up">sign up</Link>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -31,4 +33,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default LoginForm;
