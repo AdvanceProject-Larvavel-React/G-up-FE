@@ -1,6 +1,6 @@
 export default {
     HOME_ROUTE: "/",
-    LOGIN_ROUTE: "/login",
+    AUTH_ROUTE: "/auth",
     ABOUT_ROUTE: "/about",
     ERR_404_ROUTE: "*",
 }
