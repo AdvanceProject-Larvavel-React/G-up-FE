@@ -7,24 +7,23 @@ import { ServerErrorPage } from "../global-components/errors/ServerErrorPage";
 import { SoftwareErrorPage } from "../global-components/errors/SoftwareErrorPage";
 import RoutePath from "./RoutePath";
 import Support from "../modules/support";
-
-
+import ContentSection from "../modules/support/components/Content";
+import CategoryDetail from "../modules/support/CategoryDetail";
 
 const AppRouter = () => {
   return useRoutes([
     {
       path: RoutePath.HOME_ROUTE,
-      element: <Navigate to="/hello-word" />,
+      element: <Navigate to="/hello-world" />,
     },
     {
       path: "/support",
-      element: (
-        <>
-          <Support/>
-        </>
-      ),
+      element: <Support />,
+      children: [
+        { path: "index", element: <ContentSection/>},
+        { path: "index/:id", element: <CategoryDetail />},
+      ]
     },
-  
     {
       path: RoutePath.ERR_403_ROUTE,
       element: <AccessDeniedPage />,

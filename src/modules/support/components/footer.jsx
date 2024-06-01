@@ -6,11 +6,6 @@ const { Footer } = Layout;
 
 const footerStyle = {
   textAlign: 'center',
- 
-  
- 
-  
-  
   backgroundColor: '#D9D9D9',
 };
 

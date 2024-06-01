@@ -1,0 +1,51 @@
+.detailCa{
+    justify-content: center;
+    text-align: center;
+   
+    
+    margin-top:50px ;
+    margin-left: 51px;
+}
+.text1 {
+    display: flex;
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    height: 100vh;
+    /* Chiều cao toàn màn hình */
+    background-color: #f9f9f9;
+    /* Màu nền nhẹ nhàng */
+    padding: 20px;
+    /* Khoảng cách bên trong */
+    box-sizing: border-box;
+    /* Đảm bảo padding được tính vào kích thước tổng */
+}
+
+.textChild {
+    text-align: left;
+    /* Căn lề trái để dễ đọc */
+    border: 2px solid #b7b7b1;
+    /* Viền */
+    background-color: antiquewhite;
+    /* Màu nền bên trong */
+    border-radius: 10px;
+    /* Bo góc viền */
+    width: 80%;
+    /* Chiều rộng của khung nội dung */
+    max-width: 800px;
+    /* Chiều rộng tối đa */
+    padding: 20px;
+    /* Khoảng cách bên trong */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Hiệu ứng đổ bóng */
+}
+
+.deText {
+    margin: 20px 0;
+    /* Khoảng cách giữa các đoạn */
+    font-size: 1.2em;
+    /* Kích thước văn bản */
+    color: #333;
+    /* Màu văn bản */
+}
