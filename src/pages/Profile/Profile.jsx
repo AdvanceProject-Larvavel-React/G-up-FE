@@ -1,8 +1,25 @@
 
+import { useEffect } from "react";
 import styles from "./profile.module.css";
 // import ProfileDetailItem from "./ProfileDetailItem/ProfileDetailItem";
 
 export default function Profile() {
+
+  useEffect(() => {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "example@gmai.com",
+        password: "Passw0rd",
+      }),
+    };
+    fetch("http://localhost:8000/login", options)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+      });
+  }, [])
   return (
     <div className={`${styles["profile__container"]}`}>
       {/* <div colSpan={1} className={`${styles["profile__left"]}`}>

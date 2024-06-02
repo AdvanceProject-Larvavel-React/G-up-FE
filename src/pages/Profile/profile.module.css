@@ -172,4 +172,13 @@
   .profile__form-parent {
     display: block;
   }
+
+  .profile__form-item input {
+    padding: 12px;
+  }
+
+  .profile__right-btn button {
+    padding: 12px;
+    margin-top: 24px;
+  }
 }
