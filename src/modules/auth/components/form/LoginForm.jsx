@@ -44,14 +44,13 @@ const LoginForm = () => {
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
     setOpen(false);
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
         <MainContainer>
-          <WelcomeText>Welcome To G-up</WelcomeText>
+          <WelcomeText>Welcome To G-up <br/> <center>Login</center></WelcomeText>
           <p>{errorMessage ? "Please! Try check again" : ""}</p>
           <InputContainer>
             <Input
@@ -68,9 +67,9 @@ const LoginForm = () => {
             />
           </InputContainer>
           <ButtonContainer>
-            <Button content="Sign Up" type="submit" />
+            <Button content="Login In" type="submit" />
           </ButtonContainer>
-          <StyledLink to="register">OR REGISTER NEW ACCOUNT</StyledLink>
+          <StyledLink to="/auth/register">OR REGISTER NEW ACCOUNT</StyledLink>
           {status === "loading" && <Spin />}
           <HorizontalRule />
           <IconsContainer>
