@@ -108,7 +108,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
+  height: 90vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -146,11 +146,11 @@ const MainContainer = styled.div`
   }
   @media only screen and (min-width: 1024px) {
     width: 70vw;
-    height: 80vh;
+    height: 90vh;
   }
   @media only screen and (min-width: 1280px) {
     width: 30vw;
-    height: 80vh;
+    height: 90vh;
   }
 `;
 const StyledLink = styled(Link)`
