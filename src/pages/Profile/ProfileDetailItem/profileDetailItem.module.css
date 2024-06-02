@@ -1,0 +1,12 @@
+.profile__item {
+  margin-bottom: 16px;
+}
+
+.profile__item h2 {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.profile__item p {
+  font-size: 16px;
+}

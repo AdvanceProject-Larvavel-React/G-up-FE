@@ -2,6 +2,8 @@ import { Navigate } from "react-router-dom";
 import PrivateLayout from "../layouts/PrivateLayout";
 import RoutePath from "./RoutePath";
 
+
+
 const storeOwnerRoutes = [
   {
     path: "",
@@ -23,6 +25,7 @@ const storeOwnerRoutes = [
         path: "settings",
         element: <div>Settings</div>,
       },
+   
       {
         path: RoutePath.ERR_404_ROUTE,
         element: <>NotFound</>,

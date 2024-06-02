@@ -1,0 +1,11 @@
+.sideBar__container {
+  width: 300px;
+  height: 100vh;
+  background-color: #ccc;
+  padding-top: 40px;
+}
+
+.sideBar__menu-icon {
+  width: 24px;
+  height: 24px;
+}
