@@ -7,6 +7,7 @@ import storeOwnerRoutes from "./ShopOwnerRoute";
 import superAdminRoutes from "./SuperAdminRoute";
 import { LoginPage } from "../modules/auth/LoginPage";
 import { AuthLayout } from "../modules/auth/layouts/AuthLayout";
+import { RegisterPage } from "../modules/auth/RegisterPage";
 
 const AppRouter = () => {
   console.clear();
@@ -33,7 +34,11 @@ const AppRouter = () => {
         {
           path:"login",
           element: <LoginPage/>,
-        }
+        },
+        {
+          path:"register",
+          element: <RegisterPage/>,
+        },
       ]
     }
   );
