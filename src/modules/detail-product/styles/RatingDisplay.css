@@ -1,0 +1,26 @@
+.product-rating {
+    display: flex; /* Allow stars and average to be side-by-side */
+    align-items: center; /* Align vertically */
+    font-size: 16px; /* Set base font size for stars and text */
+  }
+  
+  .rating-stars {
+    color: #f0ad4e; 
+    margin-right: 5px; 
+  }
+  
+  .rating-average {
+    color: #888; 
+  }
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .ml-3 {
+    margin-left: 1rem;
+  }
+  
+  .rating-text {
+    font-size: 14px;
+  }

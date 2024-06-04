@@ -1,0 +1,53 @@
+.voucher {
+    display: flex; 
+    flex-direction: column; 
+
+    justify-content: center;
+   
+   gap: 3px;
+ 
+
+  }
+  
+  .voucher__title {
+    margin-bottom: 10px;
+    
+    font-size: 1.2rem; 
+  }
+  
+  .voucher__discounts {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+
+  }
+  
+  .voucher__discounts li {
+    margin-bottom: 5px;
+    font-size: 1rem; 
+
+  }
+  
+  .voucher__discounts li:last-child { 
+    color: #f00;
+    font-weight: bold;
+  }
+  .voucher__button {
+    background-color:cadetblue;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .voucher__discounts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+  }

@@ -5,13 +5,13 @@ import { InforProd } from "./InforProd";
 export const DetailProd = (props) => {
   return (
     <>
-      <Row gutter={[16, 16]} style={{marginTop:"80px"}}>
+      <Row gutter={[16, 16]} style={{ marginTop: "20px" }}>  
         <Col md={2}></Col>
         <Col span={10}>
-            <ImageProd prod={props.prod}/>
+          <ImageProd prod={props.prod} />
         </Col>
         <Col span={10}>
-            <InforProd prod={props.prod}/> 
+          <InforProd prod={props.prod} />
         </Col>
         <Col md={2}></Col>
       </Row>

@@ -2,6 +2,7 @@ import { Col, Row } from "antd";
 const titleStyle = {
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: "26px",
 }
 export const SectionDivider = ({ title }) => {
   return (
