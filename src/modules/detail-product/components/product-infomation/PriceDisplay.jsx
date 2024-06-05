@@ -4,7 +4,8 @@ import '../../styles/PriceDisplay.css';
 const PriceDisplay = ({ price }) => {
   return (
     <div className="product-price">
-      <span className="old-price">{price}</span>
+      <span className="old-price">$50.00</span>
+      <span className="new-price">{price}</span>
     </div>
   );
 };

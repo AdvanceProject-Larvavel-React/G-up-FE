@@ -1,4 +1,4 @@
-import { Row, Col, Space } from "antd";
+import { Row, Col, Space, Divider } from "antd";
 import AddToCartButton from "../../../../global-components/core/button/AddToCartButton";
 import BuyNowButton from "../../../../global-components/core/button/BuyNowbutton";
 import FavoriteButton from "../../../../global-components/core/button/FavoriteButton";
@@ -6,20 +6,44 @@ import { QuantityAdjuster } from "../../../../global-components/core/button/Quan
 import PriceDisplay from "./PriceDisplay";
 import RatingDisplay from "./RatingDisplay";
 import Voucher from "./Voucher";
+import Title from "antd/es/typography/Title";
 export const InforProd = (props) => {
-  const { name, price } = props.prod;
-  console.log(props.prod);
+  const { name, price,sold, description } = props.prod;
+  console.log(name);
   return (
     <>
-      <Space direction="vertical" size={16}>
+     <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        <Title level={2}>{name}</Title>
+        <RatingDisplay sold={sold} />
+        <PriceDisplay price={price} />
+        <h6>{description}</h6>
+        <Divider />
+        <Voucher  />
+        <Row gutter={16} align="middle">
+          <Col span={14}>
+            <QuantityAdjuster />
+          </Col>
+          <Col span={10}>
+            <FavoriteButton />
+          </Col>
+        </Row>
+        <Divider />
+        <Row gutter={16}>
+          <Col span={12}>
+            <BuyNowButton />
+          </Col>
+          <Col span={12}>
+            <AddToCartButton />
+          </Col>
+        </Row>
+      </Space>
+      {/* <Space direction="vertical" size={16}>
         <RatingDisplay />
       </Space>
       <PriceDisplay price={price} />
       <Space direction="vertical" size={16}></Space>
       <Voucher />
-    
         {name}
-     
       <Row></Row>
       <Space direction="vertical" size={16}>
         <Row gutter={16}>
@@ -38,7 +62,7 @@ export const InforProd = (props) => {
             <AddToCartButton />
           </Col>
         </Row>
-      </Space>
+      </Space> */}
     </>
   );
 };

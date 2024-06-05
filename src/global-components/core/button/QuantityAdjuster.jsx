@@ -9,7 +9,6 @@ export const QuantityAdjuster = () => {
   return (
     <>
         <div className="quantity-controls">
-              
               <input
                 type="number"
                 id="quantity"
@@ -18,7 +17,6 @@ export const QuantityAdjuster = () => {
                 min="1"
                 max="10"
               />
-             
         </div>
     </>
   )

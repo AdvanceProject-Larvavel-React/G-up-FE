@@ -5,11 +5,11 @@ import '../../styles/RatingDisplay.css';
 
 const { Text } = Typography;
 
-const RatingDisplay = ({ rating, purchases }) => {
+const RatingDisplay = ({ sold }) => {
   return (
     <div className="rating">
       <Rate defaultValue={2.5} />
-      <Text className="ml-3 rating-text">{rating}/5 đánh giá | {purchases} đã mua</Text>
+      <Text className="ml-3 rating-text">{2.5}/5 đánh giá | {sold} đã mua</Text>
     </div>
   );
 };
