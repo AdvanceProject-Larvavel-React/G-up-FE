@@ -6,8 +6,10 @@ import Profile from "../modules/profile/components/profile/Profile.jsx";
 import SaveChange from "../modules/profile/components/save-change/SaveChange.jsx";
 import Setting from "../modules/profile/components/settings/Setting.jsx";
 import Contact from "../modules/contact/Contact.jsx";
-
-const customerRoutes = [
+import Support from "../modules/support-page/index"
+import CategoryDetail from "../modules/support-page/CategoryDetail"
+import ContentSection from "../modules/support-page/components/Content";
+const CustomerRoutes = [
   {
     path: "",
     element: <Navigate to="home" />,
@@ -39,6 +41,15 @@ const customerRoutes = [
     ],
   },
   {
+  path: "/support",
+  element: <Support />,
+  children: [
+    { path: "", element: <ContentSection /> },
+    { path: "index", element: <ContentSection /> },
+    { path: "index/:id", element: <CategoryDetail /> },
+    ]
+  },
+  {
     path: RoutePath.ERR_404_ROUTE,
     element: <>NotFound</>,
   },
@@ -47,4 +58,4 @@ const customerRoutes = [
     element: <Contact />,
   },
 ];
-export default customerRoutes;
+export default CustomerRoutes;
