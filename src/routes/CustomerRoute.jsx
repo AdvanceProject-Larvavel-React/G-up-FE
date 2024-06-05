@@ -9,6 +9,7 @@ import Contact from "../modules/contact/Contact.jsx";
 import Support from "../modules/support-page/index"
 import CategoryDetail from "../modules/support-page/CategoryDetail"
 import ContentSection from "../modules/support-page/components/Content";
+import { Index } from "../modules/detail-product/Index";
 const CustomerRoutes = [
   {
     path: "",
@@ -48,6 +49,10 @@ const CustomerRoutes = [
     { path: "index", element: <ContentSection /> },
     { path: "index/:id", element: <CategoryDetail /> },
     ]
+  },
+  {
+    path:"/product/:id",
+    element: <Index/>,
   },
   {
     path: RoutePath.ERR_404_ROUTE,

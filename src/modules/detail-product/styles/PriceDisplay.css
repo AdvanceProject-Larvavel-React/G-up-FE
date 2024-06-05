@@ -1,0 +1,15 @@
+.product-price {
+    display: flex; 
+    align-items: baseline; 
+   
+  }
+  
+  .product-price .old-price {
+    color: #999;
+    text-decoration: line-through; 
+    margin-right: 5px; 
+  }
+  
+  .product-price .new-price {
+    font-weight: bold;
+  }
