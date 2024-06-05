@@ -1,5 +1,6 @@
 .contact__container {
   padding: 0 32px;
+  margin-top: 20px;
 }
 .contact__list {
   display: flex;
@@ -21,7 +22,7 @@
 
 .contact__text-heading {
   font-size: 48px;
-  color: #f9a8d4;
+  color: #E0719D;
   margin-bottom: 48px;
   letter-spacing: 8px;
 }

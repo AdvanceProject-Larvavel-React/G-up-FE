@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./sideBar.module.css";
 import MenuItem from "./MenuItem/MenuItem";
-import RoutePath from "../../../routes/RoutePath";
 
 const data = [
   {
@@ -22,7 +21,7 @@ const data = [
       </svg>
     ),
     title: "Profile",
-    route: RoutePath.PROFILE_ROUTE,
+    route: "",
   },
   {
     icon: (
@@ -42,7 +41,7 @@ const data = [
       </svg>
     ),
     title: "Information Shop",
-    route: RoutePath.INFORMATION_STORE_ROUTE,
+    route: "informationShop",
   },
   {
     icon: (
@@ -62,7 +61,7 @@ const data = [
       </svg>
     ),
     title: "Save Change",
-    route: RoutePath.SAVE_CHANGE_ROUTE,
+    route: "saveChange",
   },
 
   {
@@ -88,7 +87,7 @@ const data = [
       </svg>
     ),
     title: "Setting",
-    route: RoutePath.SETTING_ROUTE,
+    route: "setting",
   },
 ];
 

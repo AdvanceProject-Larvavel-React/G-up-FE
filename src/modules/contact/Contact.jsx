@@ -1,4 +1,3 @@
-
 import styles from "./contact.module.css";
 import thankYou from "../../assets/images/image 56.png";
 import CardItem from "../../global-components/core/cardItem/CardItem";

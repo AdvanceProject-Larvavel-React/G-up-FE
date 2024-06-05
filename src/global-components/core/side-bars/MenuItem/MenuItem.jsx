@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 export default function MenuItem({
   icon,
   title,
- 
   onClick,
   params,
   index,
