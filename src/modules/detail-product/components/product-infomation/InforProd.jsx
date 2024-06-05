@@ -7,21 +7,21 @@ import PriceDisplay from "./PriceDisplay";
 import RatingDisplay from "./RatingDisplay";
 import Voucher from "./Voucher";
 export const InforProd = (props) => {
-  const { name } = props.prod;
+  const { name, price } = props.prod;
+  console.log(props.prod);
   return (
     <>
       <Space direction="vertical" size={16}>
         <RatingDisplay />
       </Space>
-      <PriceDisplay />
+      <PriceDisplay price={price} />
       <Space direction="vertical" size={16}></Space>
       <Voucher />
-      
-      {name}
+    
+        {name}
+     
       <Row></Row>
       <Space direction="vertical" size={16}>
-        {" "}
-        {}
         <Row gutter={16}>
           <Col span={14}>
             <QuantityAdjuster />
