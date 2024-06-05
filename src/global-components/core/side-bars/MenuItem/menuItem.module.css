@@ -1,0 +1,30 @@
+.menu__item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  min-width: 240px;
+}
+
+.menu__item:hover {
+  color: #ef4444;
+  transition: all 0.3s linear;
+}
+.menu__item.active {
+  color: #ef4444;
+}
+.menu__item-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.menu__item-title {
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu__item-link {
+  text-decoration: none;
+  color: #000;
+}

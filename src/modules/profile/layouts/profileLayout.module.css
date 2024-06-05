@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.sidebar {
+  width: 240px;
+}
+
+.child {
+  width: calc(100% - 240px);
+  height: 100vh;
+  margin-left: 30px;
+}
+
+@media (max-width: 576px) {
+  .container {
+    display: block;
+    padding: 0 8px;
+  }
+  .sidebar {
+    width: 100%;
+  }
+
+  .child {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

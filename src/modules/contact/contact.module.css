@@ -1,0 +1,133 @@
+.contact__container {
+  padding: 0 32px;
+  margin-top: 20px;
+}
+.contact__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact__content {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.contact__content-text {
+  text-align: center;
+  padding: 0 32px;
+}
+
+.contact__text-heading {
+  font-size: 48px;
+  color: #E0719D;
+  margin-bottom: 48px;
+  letter-spacing: 8px;
+}
+
+.contact__text-decs {
+  margin-bottom: 16px;
+}
+
+.contact__decs-email a,
+.contact__decs-phone a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.contact__decs-email:hover a,
+.contact__decs-phone:hover a {
+  opacity: 0.8;
+  color: #a48ff7;
+  transition: all 0.3s linear;
+}
+
+.contact__content-text img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.contact__content-form {
+  padding: 0 32px;
+  padding-top: 12px;
+}
+.contact__form-item {
+  margin-bottom: 16px;
+}
+.contact__form-item label {
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 12px;
+}
+
+.contact__form-item input,
+.contact__form-item textarea {
+  padding: 12px 12px;
+  resize: none;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  outline: none;
+  margin-top: 8px;
+}
+
+.contact__form-item input:focus,
+.contact__form-item textarea:focus {
+  border: 2px solid rgb(20 184 166);
+}
+
+.contact__form-btn button {
+  font-size: 14px;
+  padding: 12px 20px;
+  background-color: rgb(20 184 166);
+  color: #fff;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  font-weight: 700;
+}
+
+.contact__form-btn button:hover {
+  opacity: 0.8;
+  color: #f9a8d4;
+  background-color: #a48ff7;
+}
+
+.contact__form-btn p a {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contact__form-btn p a:hover {
+  color: #f9a8d4;
+}
+
+@media (max-width: 576px) {
+  .contact__container {
+    padding: 0 8px;
+  }
+  .contact__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact__content {
+    display: block;
+    width: 100%;
+  }
+
+  .contact__content-text,
+  .contact__content-form {
+    padding: 0;
+  }
+}
