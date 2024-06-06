@@ -18,7 +18,7 @@ const AppRouter = () => {
     routes = [...superAdminRoutes];
   } else if (token && role == 3) {
     routes = [...storeOwnerRoutes];
-  }else {
+  } else {
     routes = [...customerRoutes];
   }
 
@@ -26,18 +26,18 @@ const AppRouter = () => {
     {
       path: RoutePath.AUTH_ROUTE,
       element: token ? <Authorization /> : <AuthLayout />,
-      children:[
+      children: [
         {
-          path : "",
-          element: <LoginPage/>,
+          path: "",
+          element: <LoginPage />,
         },
         {
-          path:"login",
-          element: <LoginPage/>,
+          path: "login",
+          element: <LoginPage />,
         },
         {
-          path:"register",
-          element: <RegisterPage/>,
+          path: "register",
+          element: <RegisterPage />,
         },
       ]
     }
