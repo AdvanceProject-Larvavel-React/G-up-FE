@@ -1,26 +1,24 @@
-
-import Header from "../../../global-components/core/headers/Header";
+import { Spin } from "antd";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../../../global-components/core/footers/Footer";
+import Header from "../../../global-components/core/headers/Header";
 import SideBar from "../../../global-components/core/side-bars/SideBar";
 import styles from "./profileLayout.module.css";
-import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Spin } from "antd";
 const ProfileLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      navigate('/auth');
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/auth");
     } else {
-      setLoading(false); 
+      setLoading(false);
     }
   }, [navigate]);
 
   if (loading) {
-    return <Spin/>;
+    return <Spin />;
   }
   return (
     <>
@@ -29,12 +27,12 @@ const ProfileLayout = () => {
         <div className={`${styles["container"]}`}>
           <SideBar className={`${styles["sidebar"]}`} />
           <div className={`${styles["child"]}`}>
-            <Outlet/>
+            <Outlet />
           </div>
         </div>
         <Footer />
       </div>
     </>
   );
-}
+};
 export default ProfileLayout;
