@@ -1,8 +1,6 @@
 import { Spin } from "antd";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import Footer from "../../../global-components/core/footers/Footer";
-import Header from "../../../global-components/core/headers/Header";
 import SideBar from "../../../global-components/core/side-bars/SideBar";
 import styles from "./profileLayout.module.css";
 const ProfileLayout = () => {
@@ -23,14 +21,12 @@ const ProfileLayout = () => {
   return (
     <>
       <div>
-        <Header />
         <div className={`${styles["container"]}`}>
           <SideBar className={`${styles["sidebar"]}`} />
           <div className={`${styles["child"]}`}>
             <Outlet />
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );
