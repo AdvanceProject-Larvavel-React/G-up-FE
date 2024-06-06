@@ -1,0 +1,19 @@
+.quantity-controls {
+    display: flex; 
+    align-items: center;
+    
+  }
+  
+  .quantity-controls input {
+    width: 40px; 
+    padding: 5px; 
+    border: 1px solid #ddd; 
+    border-radius: 3px; 
+    text-align: center; 
+    
+  }
+  
+  .quantity-controls input:focus {
+    outline: 2px solid #3498db; 
+    
+  }

@@ -1,0 +1,10 @@
+html {
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.6rem;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
