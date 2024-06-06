@@ -22,26 +22,24 @@ const AppRouter = () => {
     routes = [...customerRoutes];
   }
 
-  routes.push(
-    {
-      path: RoutePath.AUTH_ROUTE,
-      element: token ? <Authorization /> : <AuthLayout />,
-      children: [
-        {
-          path: "",
-          element: <LoginPage />,
-        },
-        {
-          path: "login",
-          element: <LoginPage />,
-        },
-        {
-          path: "register",
-          element: <RegisterPage />,
-        },
-      ]
-    }
-  );
+  routes.push({
+    path: RoutePath.AUTH_ROUTE,
+    element: token ? <Authorization /> : <AuthLayout />,
+    children: [
+      {
+        path: "",
+        element: <LoginPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+    ],
+  });
 
   const routing = useRoutes(routes);
   return routing;
