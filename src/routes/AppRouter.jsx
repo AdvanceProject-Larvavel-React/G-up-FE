@@ -14,34 +14,32 @@ const AppRouter = () => {
   const token = localStorage.getItem("token");
   const role = useSelector((state) => state.auth.role);
   let routes = [];
-  if (token && role == 2) {
+  if (token && role === 2) {
     routes = [...superAdminRoutes];
-  } else if (token && role == 3) {
+  } else if (token && role === 3) {
     routes = [...storeOwnerRoutes];
-  }else {
+  } else {
     routes = [...customerRoutes];
   }
 
-  routes.push(
-    {
-      path: RoutePath.AUTH_ROUTE,
-      element: token ? <Authorization /> : <AuthLayout />,
-      children:[
-        {
-          path : "",
-          element: <LoginPage/>,
-        },
-        {
-          path:"login",
-          element: <LoginPage/>,
-        },
-        {
-          path:"register",
-          element: <RegisterPage/>,
-        },
-      ]
-    }
-  );
+  routes.push({
+    path: RoutePath.AUTH_ROUTE,
+    element: token ? <Authorization /> : <AuthLayout />,
+    children: [
+      {
+        path: "",
+        element: <LoginPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+    ],
+  });
 
   const routing = useRoutes(routes);
   return routing;
