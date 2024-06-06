@@ -14,9 +14,9 @@ const AppRouter = () => {
   const token = localStorage.getItem("token");
   const role = useSelector((state) => state.auth.role);
   let routes = [];
-  if (token && role === 2) {
+  if (token && role == 2) {
     routes = [...superAdminRoutes];
-  } else if (token && role === 3) {
+  } else if (token && role == 3) {
     routes = [...storeOwnerRoutes];
   } else {
     routes = [...customerRoutes];
