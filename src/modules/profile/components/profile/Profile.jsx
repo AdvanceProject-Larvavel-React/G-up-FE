@@ -33,15 +33,31 @@ export default function Profile() {
     };
   }, [avatar]);
 
-  const handleOnchangeFileAvatar = (e) => {
+  const handleOnchangeFileAvatar = async(e) => {
     const { name } = e.target;
     const fileAvatar = e.target.files[0];
+    const formData = new FormData();
+    formData.append('media', fileAvatar);
+    const url = await axios.post(`http://127.0.0.1:8000/api/image/post/url`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    const image= url.data.url;
+    console.log("iamge la gi", image);
+    await axios.put(
+      `http://127.0.0.1:8000/api/user/put/update/${user?.id}`,
+      { "avatar": image },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     fileAvatar.preview = URL.createObjectURL(fileAvatar);
-    setAvatar(fileAvatar);
-    user.avatar = fileAvatar.preview;
-    setUserData({ [name]: fileAvatar });
-    console.log(name , "=>", fileAvatar)
-
+    setAvatar(image);
+    user.avatar = image;
+    setUserData({ [name]: image });
   };
 
   const handleInputChange = (e) => {
