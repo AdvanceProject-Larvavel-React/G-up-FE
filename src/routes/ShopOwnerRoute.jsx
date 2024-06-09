@@ -6,7 +6,7 @@ import Profile from "../modules/profile/components/profile/Profile";
 import InformationStore from "../modules/profile/components/information-store/InformationStore";
 import SaveChange from "../modules/profile/components/save-change/SaveChange";
 import Setting from "../modules/profile/components/settings/Setting";
-
+import ProductDashboard from "../modules/store-admin/ProductDashboard";
 
 
 const storeOwnerRoutes = [
@@ -24,7 +24,7 @@ const storeOwnerRoutes = [
       },
       {
         path: "dashboard",
-        element: <div>Dashboard Store Owner</div>,
+        element: <ProductDashboard  />,
       },
       {
         path: "settings",
