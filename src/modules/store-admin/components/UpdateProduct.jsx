@@ -1,129 +1,99 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ProductApi from './ProductApi';
+// UpdateProduct.js
 
-const UpdateProduct = () => {
-    const { id } = useParams();
-    const [productData, setProductData] = useState({
-        name: '',
-        description: '',
-        price: '',
-        quantity: '',
-        file_paths: null,
-        category_id: '',
-        store_id: ''
-    });
-    const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
+import { Button, Input, Modal, Upload } from "antd";
+import { useState } from "react";
+import { updateProduct } from "../apis/ProductAPIs";
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const data = await ProductApi.getProductById(id);
-                setProductData(data.data);
-            } catch (err) {
-                setError(err.message);
+export const UpdateProduct = ({ visible, onClose, product, onUpdate }) => {
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState(product.name);
+  const [description, setDescription] = useState(product.description);
+  const [price, setPrice] = useState(product.price);
+  const [image, setImage] = useState(product.image);
+
+  const handleUpdate = async () => {
+    setLoading(true);
+    try {
+      const updatedData = {
+        name,
+        description,
+        price,
+        image,
+      };
+
+      await updateProduct(product.id, updatedData);
+      onUpdate(); 
+      onClose(); 
+    } catch (error) {
+      console.error("Failed to update product:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Modal
+      visible={visible}
+      title="Update Product"
+      onCancel={onClose}
+      footer={[
+        <Button key="cancel" onClick={onClose}>
+          Cancel
+        </Button>,
+        <Button
+          key="submit"
+          type="primary"
+          loading={loading}
+          onClick={handleUpdate}
+        >
+          Update
+        </Button>,
+      ]}
+    >
+      <div>
+        <label>Name</label>
+        <Input value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
+      <div>
+        <label>Description</label>
+        <Input.TextArea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Price</label>
+        <Input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          type="number"
+        />
+      </div>
+      <br />
+      <div>
+        <label>Image</label>
+        {image && (
+          <img
+            src={image}
+            alt="Product"
+            style={{ width: 100, height: 100, marginBottom: 10 }}
+          />
+        )}
+        <Upload
+          beforeUpload={() => false}
+          fileList={[]}
+          onChange={(info) => {
+            const { status, originFileObj } = info.file;
+            if (status === "done") {
+              const reader = new FileReader();
+              reader.onload = (e) => setImage(e.target.result);
+              reader.readAsDataURL(originFileObj);
             }
-        };
-
-        fetchProduct();
-    }, [id]);
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (files) {
-            setProductData(prevState => ({
-                ...prevState,
-                [name]: files[0]
-            }));
-        } else {
-            setProductData(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        }
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        for (const key in productData) {
-            formData.append(key, productData[key]);
-        }
-        try {
-            const response = await ProductApi.updateProduct(id, formData);
-            setSuccessMessage(response.state);
-            setError(null);
-        } catch (err) {
-            setError(err.message);
-            setSuccessMessage(null);
-        }
-    };
-
-    return (
-        <div>
-            <h1>Update Product</h1>
-            {error && <div>Error: {error}</div>}
-            {successMessage && <div>{successMessage}</div>}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={productData.name}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                    value={productData.description}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="price"
-                    placeholder="Price"
-                    value={productData.price}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="quantity"
-                    placeholder="Quantity"
-                    value={productData.quantity}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="file"
-                    name="file_paths"
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="category_id"
-                    placeholder="Category ID"
-                    value={productData.category_id}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="store_id"
-                    placeholder="Store ID"
-                    value={productData.store_id}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit">Update Product</button>
-            </form>
-        </div>
-    );
+          }}
+        >
+          <Button>Select Image</Button>
+        </Upload>
+      </div>
+    </Modal>
+  );
 };
-
-export default UpdateProduct;

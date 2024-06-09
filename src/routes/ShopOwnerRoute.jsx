@@ -1,18 +1,18 @@
 import { Navigate } from "react-router-dom";
-import PrivateLayout from "../layouts/PrivateLayout";
 import RoutePath from "./RoutePath";
 import ProfileLayout from "../modules/profile/layouts/ProfileLayout";
 import Profile from "../modules/profile/components/profile/Profile";
 import InformationStore from "../modules/profile/components/information-store/InformationStore";
 import SaveChange from "../modules/profile/components/save-change/SaveChange";
 import Setting from "../modules/profile/components/settings/Setting";
-import ProductDashboard from "../modules/store-admin/ProductDashboard";
+import PrivateStoreOwner from "../layouts/PrivateStoreOwner";
+import { ProductDashboard } from "../modules/store-admin/ProductDashboard";
 
 
 const storeOwnerRoutes = [
   {
     path: "",
-    element: <PrivateLayout requiredRole={3}/>,
+    element: <PrivateStoreOwner requiredRole={3}/>,
     children: [
       {
         path: "",
@@ -24,8 +24,10 @@ const storeOwnerRoutes = [
       },
       {
         path: "dashboard",
-        element: <ProductDashboard  />,
+        element: <>dash board</>,
       },
+      {path:"list-product", element:<ProductDashboard  />},
+      {path:"search-user", element:<>search</>},
       {
         path: "settings",
         element: <div>Settings</div>,
