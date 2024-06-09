@@ -1,0 +1,14 @@
+.catego{
+    margin-top: 30px;
+}
+/* Trong file CSS của bạn */
+.catego .ant-col:hover {
+    /* Định dạng cho hiệu ứng hover */
+    transform: scale(1.05);
+    /* Phóng to một chút */
+    transition: transform 0.2s ease-in-out;
+    /* Hiệu ứng mượt mà */
+}
+body{
+    background-color: rgb(252, 222, 210);
+}

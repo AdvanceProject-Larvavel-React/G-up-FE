@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import "../../../assets/styles/CardShop.css";
+import "../../../assets/styles/CardProd.css";
 export const Card = (props) => {
   const { name: prodName, price, description, sold, file_paths,id } = props.data;
   return (
