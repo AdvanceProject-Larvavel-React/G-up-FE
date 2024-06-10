@@ -231,9 +231,7 @@ export const ProductDashboard = () => {
     navigate("/list-product/create");
   };
 
-  useEffect(() => {
-    
-  },[])
+
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>

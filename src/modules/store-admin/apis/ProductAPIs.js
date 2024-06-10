@@ -24,7 +24,7 @@ export const createProduct = (productData) => {
 
 
 export const  getAllCategory = () => {
-  return BaseApi.get("/api/category/get/all", {headers: {
+  return BaseApi.get("/category/get/all", {headers: {
     'Content-Type': 'multipart/form-data'
   }})
 
