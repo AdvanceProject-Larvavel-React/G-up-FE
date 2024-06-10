@@ -18,8 +18,13 @@ export const getAllUserData = () => {
 };
 
 // Update User
-export const updateUser = (id, userData) => {
-  return BaseApi.put(`${USER_ENDPOINT}/put/update/${id}`, userData);
+export const updateUser = (id, userData,token) => {
+  console.log(userData);
+  return BaseApi.put(`${USER_ENDPOINT}/put/update/${id}`, userData,  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 // Disable User

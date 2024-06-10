@@ -1,7 +1,7 @@
 import { Button, Col, Modal, Row, Skeleton, Space, Table } from "antd";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getUserDataActive } from "../apis/UserAPIs";
+import { UpdateUer } from "./components/UpdateUser";
 
 export const UserDashboard = () => {
   const [activeUsers, setActiveUsers] = useState([]);
@@ -16,6 +16,8 @@ export const UserDashboard = () => {
   const [sortOrder, setSortOrder] = useState(null);
   const [imagePreviewVisible, setImagePreviewVisible] = useState(false);
   const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const fetchActiveUsers = async () => {
     try {
       const response = await getUserDataActive();
@@ -70,6 +72,15 @@ export const UserDashboard = () => {
     setActiveUsers(sortedData);
   };
 
+  const handleUpdateClick = (user) => {
+    setSelectedUser(user);
+    setUpdateModalVisible(true);
+  };
+
+  const handleUpdate = () => {
+    fetchActiveUsers();
+  };
+
   const columns = [
     {
       title: "ID",
@@ -118,39 +129,16 @@ export const UserDashboard = () => {
       ),
     },
     {
-      title: "Cover Image",
-      dataIndex: "cover_img",
-      key: "cover_img",
-      render: (coverImg) => (
-        <img
-          src={coverImg}
-          alt="Cover"
-          style={{ width: 50, height: 50, borderRadius: "10px", border: "1px solid grey" }}
-          onClick={() => handlePreviewImage(coverImg)}
-        />
-      ),
-    },
-    {
       title: "Status",
       dataIndex: "status",
       key: "status",
     },
     {
-      title: "Created At",
-      dataIndex: "created_at",
-      key: "created_at",
-    },
-    {
-      title: "Updated At",
-      dataIndex: "updated_at",
-      key: "updated_at",
-    },
-    {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size="large">
-          <Link to={`/user/${record.id}`}>Detail: {record.id}</Link>
+        <Space size='large'>
+          <Button onClick={() => handleUpdateClick(record)}>Update</Button>
         </Space>
       ),
     },
@@ -199,6 +187,12 @@ export const UserDashboard = () => {
         >
           <img src={imagePreviewUrl} alt="Preview" style={{ width: "100%" }} />
         </Modal>
+        <UpdateUer
+          visible={updateModalVisible}
+          onClose={() => setUpdateModalVisible(false)}
+          user={selectedUser}
+          onUpdate={handleUpdate}
+        />
       </Col>
     </Row>
   );
