@@ -11,6 +11,10 @@ import CategoryDetail from "../modules/support-page/CategoryDetail"
 import ContentSection from "../modules/support-page/components/Content";
 import { Index } from "../modules/detail-product/Index";
 import { FormCheckOut } from "../modules/cart/components/FormCheckOut.jsx";
+
+
+
+import Store from "../modules/store/Store";
 const CustomerRoutes = [
   {
     path: "",
@@ -20,6 +24,7 @@ const CustomerRoutes = [
     path: "home",
     element: <>Home page</>,
   },
+  
   {
     path: "profile",
     element: <ProfileLayout />,
@@ -39,6 +44,15 @@ const CustomerRoutes = [
       {
         path: "setting",
         element: <Setting />,
+      },
+    ],
+  },
+  {
+    path: "store",
+    children: [
+      {
+        path: "",
+        element: <Store />,
       },
     ],
   },
