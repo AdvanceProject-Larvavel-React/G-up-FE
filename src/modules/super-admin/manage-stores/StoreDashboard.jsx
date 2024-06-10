@@ -1,18 +1,15 @@
 import { Button, Col, Modal, Row, Skeleton, Space, Table, message } from "antd";
 import { useEffect, useState } from "react";
-import {
-  destroyProduct,
-  disableProduct,
-  getActiveProducts,
-} from "./apis/ProductAPIs";
-import { UpdateProduct } from "./components/UpdateProduct";
-import { useNavigate } from "react-router-dom";
+import { convertDateToDDMMYYYY } from "../../../utils/date.utils";
+import { destroyStore, disableStore, getActiveStores } from "../apis/StoreAPIs";
+import { UpdateStore } from "./components/UpdateStore";
+import { CreateStore } from "./components/CreateStore";
 
-export const ProductDashboard = () => {
-  const [activeProducts, setActiveProducts] = useState([]);
+export const StoreDashboard = () => {
+  const [activeStore, setActiveStores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [totalProducts, setTotalProducts] = useState();
+  const [totalStore, setTotalStores] = useState();
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 7,
@@ -21,27 +18,30 @@ export const ProductDashboard = () => {
   const [sortOrder, setSortOrder] = useState(null);
   const [imagePreviewVisible, setImagePreviewVisible] = useState(false);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedStore, setSelectedStore] = useState(null);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
-  const navigate = useNavigate();
-  const fetchActiveProducts = async () => {
+  const [createModalVisible, setCreateModalVisible] = useState(false);
+  const handleCreateModalOpen = () => {
+    setCreateModalVisible(true);
+  };
+  const fetchActiveStore = async () => {
     try {
-      const response = await getActiveProducts();
-      setActiveProducts(response.data.data);
-      setTotalProducts(response.length);
+      const response = await getActiveStores();
+      setActiveStores(response.data.data);
+      setTotalStores(response.data.data.length);
       setPagination({
         ...pagination,
-        total: response.length,
+        total: response.data.data.length,
       });
     } catch (error) {
-      setError("Failed to fetch active products.");
+      setError("Failed to fetch active users.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchActiveProducts();
+    fetchActiveStore();
   }, []);
 
   const handleTableChange = (pagination, filters, sorter) => {
@@ -53,17 +53,16 @@ export const ProductDashboard = () => {
 
     if (sorter && sorter.order) {
       setSortOrder(sorter.order);
-      const sortedData = [...activeProducts].sort((a, b) => {
+      const sortedData = [...activeStore].sort((a, b) => {
         if (sorter.order === "ascend") {
           return a[sorter.field] > b[sorter.field] ? 1 : -1;
         } else {
           return a[sorter.field] < b[sorter.field] ? 1 : -1;
         }
       });
-      setActiveProducts(sortedData);
+      setActiveStores(sortedData);
     }
   };
-
   const handlePreviewImage = (url) => {
     setImagePreviewUrl(url);
     setImagePreviewVisible(true);
@@ -73,41 +72,35 @@ export const ProductDashboard = () => {
     setImagePreviewVisible(false);
     setImagePreviewUrl("");
   };
-
   const handleSortToggle = () => {
     setSortOrder(sortOrder === "ascend" ? "descend" : "ascend");
-    const sortedData = [...activeProducts].reverse();
-    setActiveProducts(sortedData);
+    const sortedData = [...activeStore].reverse();
+    setActiveStores(sortedData);
   };
 
-  const handleUpdateClick = (product) => {
-    setSelectedProduct(product);
+  const handleUpdateClick = (user) => {
+    setSelectedStore(user);
     setUpdateModalVisible(true);
   };
 
-  const handleUpdate = (updatedProduct) => {
-    const updatedProducts = activeProducts.map((prod) =>
-      prod.id === updatedProduct.id ? updatedProduct : prod
-    );
-    setActiveProducts(updatedProducts);
-    setUpdateModalVisible(false);
+  const handleUpdate = () => {
+    fetchActiveStore();
   };
-
-  const showDeleteConfirm = (productId) => {
+  const showDeleteConfirm = (userId) => {
     Modal.confirm({
-      title: "Delete Product",
+      title: "Delete User",
       content:
-        "Do you want to delete this product permanently, disable it, or cancel?",
+        "Do you want to delete this user permanently, block them, or cancel?",
       okText: "Delete Permanently",
       cancelText: "Cancel",
       onOk: async () => {
         try {
           setLoading(true);
-          await destroyProduct(productId);
-          message.success("Product deleted permanently");
-          fetchActiveProducts();
+          await destroyStore(userId);
+          message.success("User deleted permanently");
+          fetchActiveStore();
         } catch (error) {
-          message.error("Failed to delete product permanently");
+          message.error("Failed to delete user permanently");
         } finally {
           setLoading(false);
         }
@@ -123,12 +116,12 @@ export const ProductDashboard = () => {
           onClick={async () => {
             try {
               setLoading(true);
-              await destroyProduct(productId);
-              message.success("Product deleted permanently");
-              fetchActiveProducts();
+              await destroyStore(userId);
+              message.success("User deleted permanently");
+              fetchActiveStore();
               Modal.destroyAll();
             } catch (error) {
-              message.error("Failed to delete product permanently");
+              message.error("Failed to delete user permanently");
             } finally {
               setLoading(false);
             }
@@ -137,24 +130,24 @@ export const ProductDashboard = () => {
           <Button style={{ backgroundColor: "red" }}>Delete Permanently</Button>
         </Button>,
         <Button
-          key="disable"
+          key="block"
           type="primary"
           style={{ marginRight: "15px" }}
           onClick={async () => {
             try {
               setLoading(true);
-              await disableProduct(productId);
-              message.success("Product disabled successfully");
-              fetchActiveProducts();
+              await disableStore(userId);
+              message.success("User blocked successfully");
+              fetchActiveStore();
               Modal.destroyAll();
             } catch (error) {
-              message.error("Failed to disable product");
+              message.error("Failed to block user");
             } finally {
               setLoading(false);
             }
           }}
         >
-          Disable
+          Block
         </Button>,
         <Button key="cancel" onClick={() => Modal.destroyAll()}>
           Cancel
@@ -182,31 +175,35 @@ export const ProductDashboard = () => {
       key: "description",
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
     },
     {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
-      render: (category) => category.name,
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
-      title: "Image",
-      dataIndex: "image_url",
-      key: "image_url",
-      render: (image_url) => (
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Avatar",
+      dataIndex: "avatar",
+      key: "avatar",
+      render: (avatar) => (
         <img
-          src={image_url}
-          alt="Product"
+          src={avatar}
+          alt="Avatar"
           style={{
             width: 50,
             height: 50,
             borderRadius: "10px",
             border: "1px solid grey",
           }}
-          onClick={() => handlePreviewImage(image_url)}
+          onClick={() => handlePreviewImage(avatar)}
         />
       ),
     },
@@ -214,35 +211,38 @@ export const ProductDashboard = () => {
       title: "Created at",
       dataIndex: "created_at",
       key: "created_at",
-      //   render: (date) => convertDateToDDMMYYYY(date),
+      render: (date) => convertDateToDDMMYYYY(date),
     },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size="large">
-          <Button onClick={() => handleUpdateClick(record)}>Update</Button>
-          <Button onClick={() => showDeleteConfirm(record.id)}>Delete</Button>
-        </Space>
+        <>
+          <Space size="large">
+            <Button onClick={() => handleUpdateClick(record)}>Update</Button>
+            <Button onClick={() => showDeleteConfirm(record.id)}>Delete</Button>
+          </Space>
+        </>
       ),
     },
   ];
-  const handleCreateProduct = () => {
-    navigate("/list-product/create");
-  };
 
-  useEffect(() => {
-    
-  },[])
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
-        <h1 style={{ textAlign: "center" }}>List Product</h1>
+        <h1 style={{ textAlign: "center" }}>List Store</h1>
+        <Button
+          type="primary"
+          onClick={handleCreateModalOpen}
+          style={{ marginBottom: 16, marginRight: "10px" }}
+        >
+          Create New Store
+        </Button>
         <Button
           type="primary"
           onClick={() => {
             setLoading(true);
-            fetchActiveProducts();
+            fetchActiveStore();
           }}
           style={{ marginBottom: 16 }}
         >
@@ -251,19 +251,12 @@ export const ProductDashboard = () => {
         <Button onClick={handleSortToggle} style={{ marginLeft: "10px" }}>
           {sortOrder === "ascend" ? "Sort Descending" : "Sort Ascending"}
         </Button>
-        <Button
-          type="primary"
-          onClick={handleCreateProduct}
-          style={{ marginBottom: 16, marginLeft: 16 }}
-        >
-          Add Product
-        </Button>
-        <div style={{ marginBottom: 16 }}>Total Products: {totalProducts}</div>
+        <div style={{ marginBottom: 16 }}>Total Users: {totalStore}</div>
         {loading ? (
           <Skeleton active />
         ) : (
           <Table
-            dataSource={Array.isArray(activeProducts) ? activeProducts : []}
+            dataSource={activeStore}
             columns={columns}
             pagination={{
               current: pagination.current,
@@ -276,7 +269,6 @@ export const ProductDashboard = () => {
             onChange={handleTableChange}
           />
         )}
-
         {error && <div>Error: {error}</div>}
         <Modal
           visible={imagePreviewVisible}
@@ -285,11 +277,16 @@ export const ProductDashboard = () => {
         >
           <img src={imagePreviewUrl} alt="Preview" style={{ width: "100%" }} />
         </Modal>
-        <UpdateProduct
+        <UpdateStore
           visible={updateModalVisible}
           onClose={() => setUpdateModalVisible(false)}
-          product={selectedProduct}
+          store={selectedStore}
           onUpdate={handleUpdate}
+        />
+        <CreateStore
+          visible={createModalVisible}
+          onClose={() => setCreateModalVisible(false)}
+          onCreate={handleUpdate}
         />
       </Col>
     </Row>

@@ -22,6 +22,15 @@ export const createProduct = (productData) => {
   });
 };
 
+
+export const  getAllCategory = () => {
+  return BaseApi.get("/api/category/get/all", {headers: {
+    'Content-Type': 'multipart/form-data'
+  }})
+
+}
+
+// http://localhost:8000/api/category/get/all
 export const updateProduct = (id, productData) => {
   return BaseApi.put(`${PRODUCT_ENDPOINT}/put/update/${id}`, productData, {
     headers: {

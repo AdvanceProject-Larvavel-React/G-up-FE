@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ProductApi from './ProductApi';
+ import { createProduct} from '../apis/ProductAPIs';
 
 const CreateProduct = () => {
     const [productData, setProductData] = useState({
@@ -36,7 +36,7 @@ const CreateProduct = () => {
             formData.append(key, productData[key]);
         }
         try {
-            const response = await ProductApi.createProduct(formData);
+            const response = await createProduct(formData);
             setSuccessMessage(response.message);
             setError(null);
         } catch (err) {

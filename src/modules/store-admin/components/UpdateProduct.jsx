@@ -4,10 +4,10 @@ import { updateProduct } from "../apis/ProductAPIs";
 
 export const UpdateProduct = ({ visible, onClose, product, onUpdate }) => {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState(product.name);
-  const [description, setDescription] = useState(product.description);
-  const [price, setPrice] = useState(product.price);
-  const [image, setImage] = useState(product.image);
+  const [name, setName] = useState(product?.name);
+  const [description, setDescription] = useState(product?.description);
+  const [price, setPrice] = useState(product?.price);
+  const [image, setImage] = useState(product?.image);
 
   const handleUpdate = async () => {
     setLoading(true);
@@ -22,7 +22,7 @@ export const UpdateProduct = ({ visible, onClose, product, onUpdate }) => {
 
       // Call API to update the product
       await updateProduct(product.id, updatedData);
-      
+
       // Update the product in the parent component
       onUpdate({ ...product, ...updatedData });
 
