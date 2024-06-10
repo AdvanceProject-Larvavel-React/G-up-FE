@@ -4,7 +4,7 @@ const CATEGORY_ENDPOINT = "category";
 
 // Get All Categories
 export const getAllCategories = () => {
-  return BaseApi.get(`${CATEGORY_ENDPOINT}/get/all`);
+  return BaseApi.get(`${CATEGORY_ENDPOINT}/get/all`); 
 };
 
 // Get Active Categories

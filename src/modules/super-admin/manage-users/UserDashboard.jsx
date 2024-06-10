@@ -1,13 +1,14 @@
-import { Button, Col, Modal, Row, Skeleton, Space, Table } from "antd";
+import { Button, Col, Modal, Row, Skeleton, Space, Table, message } from "antd";
 import { useEffect, useState } from "react";
-import { getUserDataActive } from "../apis/UserAPIs";
-import { UpdateUer } from "./components/UpdateUser";
+import { convertDateToDDMMYYYY } from "../../../utils/date.utils";
+import { destroyUser, disableUser, getUserDataActive } from "../apis/UserAPIs";
+import { UpdateUser } from "./components/UpdateUser";
 
 export const UserDashboard = () => {
   const [activeUsers, setActiveUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [totalUsers,setTotalUsers ] = useState();
+  const [totalUsers, setTotalUsers] = useState();
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 7,
@@ -15,14 +16,14 @@ export const UserDashboard = () => {
   });
   const [sortOrder, setSortOrder] = useState(null);
   const [imagePreviewVisible, setImagePreviewVisible] = useState(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const fetchActiveUsers = async () => {
     try {
       const response = await getUserDataActive();
       setActiveUsers(response.data.data);
-      setTotalUsers(response.data.data.length)
+      setTotalUsers(response.data.data.length);
       setPagination({
         ...pagination,
         total: response.data.data.length,
@@ -36,7 +37,7 @@ export const UserDashboard = () => {
 
   useEffect(() => {
     fetchActiveUsers();
-  },[]);
+  }, []);
 
   const handleTableChange = (pagination, filters, sorter) => {
     setPagination({
@@ -64,7 +65,7 @@ export const UserDashboard = () => {
 
   const handleClosePreview = () => {
     setImagePreviewVisible(false);
-    setImagePreviewUrl('');
+    setImagePreviewUrl("");
   };
   const handleSortToggle = () => {
     setSortOrder(sortOrder === "ascend" ? "descend" : "ascend");
@@ -80,7 +81,38 @@ export const UserDashboard = () => {
   const handleUpdate = () => {
     fetchActiveUsers();
   };
-
+  const showDeleteConfirm = (userId) => {
+    Modal.confirm({
+      title: "Delete User",
+      content: "Do you want to delete this user permanently or block them?",
+      okText: "Delete Permanently",
+      cancelText: "Block",
+      onOk: async () => {
+        try {
+          setLoading(true);
+          await destroyUser(userId);
+          message.success("User deleted permanently");
+          fetchActiveUsers();
+        } catch (error) {
+          message.error("Failed to delete user permanently");
+        } finally {
+          setLoading(false);
+        }
+      },
+      onCancel: async () => {
+        try {
+          setLoading(true);
+          await disableUser(userId);
+          message.success("User blocked successfully");
+          fetchActiveUsers();
+        } catch (error) {
+          message.error("Failed to block user");
+        } finally {
+          setLoading(false);
+        }
+      },
+    });
+  };
   const columns = [
     {
       title: "ID",
@@ -113,7 +145,7 @@ export const UserDashboard = () => {
       title: "Password",
       dataIndex: "password",
       key: "password",
-      render: () => '*******',
+      render: () => "*******",
     },
     {
       title: "Avatar",
@@ -123,23 +155,32 @@ export const UserDashboard = () => {
         <img
           src={avatar}
           alt="Avatar"
-          style={{ width: 50, height:50, borderRadius: "10px", border:"1px solid grey" }}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "10px",
+            border: "1px solid grey",
+          }}
           onClick={() => handlePreviewImage(avatar)}
         />
       ),
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
+      title: "Created at",
+      dataIndex: "created_at",
+      key: "created_at",
+      render: (date) => convertDateToDDMMYYYY(date),
     },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size='large'>
-          <Button onClick={() => handleUpdateClick(record)}>Update</Button>
-        </Space>
+        <>
+          <Space size="large">
+            <Button onClick={() => handleUpdateClick(record)}>Update</Button>
+            <Button onClick={() => showDeleteConfirm(record.id)}>Delete</Button>
+          </Space>
+        </>
       ),
     },
   ];
@@ -147,7 +188,7 @@ export const UserDashboard = () => {
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
-        <h1 style={{textAlign: "center"}} >List User</h1>
+        <h1 style={{ textAlign: "center" }}>List User</h1>
         <Button
           type="primary"
           onClick={() => {
@@ -158,7 +199,7 @@ export const UserDashboard = () => {
         >
           Refresh
         </Button>
-        <Button onClick={handleSortToggle} style={{marginLeft:"10px"}}>
+        <Button onClick={handleSortToggle} style={{ marginLeft: "10px" }}>
           {sortOrder === "ascend" ? "Sort Descending" : "Sort Ascending"}
         </Button>
         <div style={{ marginBottom: 16 }}>Total Users: {totalUsers}</div>
@@ -187,7 +228,7 @@ export const UserDashboard = () => {
         >
           <img src={imagePreviewUrl} alt="Preview" style={{ width: "100%" }} />
         </Modal>
-        <UpdateUer
+        <UpdateUser
           visible={updateModalVisible}
           onClose={() => setUpdateModalVisible(false)}
           user={selectedUser}
