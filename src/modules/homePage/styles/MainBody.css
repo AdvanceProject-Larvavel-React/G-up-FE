@@ -12,3 +12,13 @@
 body{
     background-color: rgb(252, 222, 210);
 }
+.text-center {
+    text-align: center;
+}
+
+.catego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px
+}

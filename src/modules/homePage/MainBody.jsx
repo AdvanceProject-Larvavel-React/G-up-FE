@@ -65,14 +65,19 @@ export const MainBody = () => {
 
   return (
     <>
-      <Row className="catego" gutter={[1, 8]}>
+      <h2 className="text-center">Category List</h2>
+      <Row className="catego " gutter={[16, 16]}>
+        <Col span={2}></Col>
         {categories.map((category) => (
-          <Col key={category.id} xs={24} sm={12} md={1} lg={6} xl={6}>
+          <Col span={4} key={category.id}>
             <Category category={category} />
           </Col>
         ))}
-        {/* Bên dưới là category theo từng sản phẩm được xác định */}
-        {/* {products.map((product) => (
+        <Col span={2}></Col>
+      </Row>
+
+      {/* Bên dưới là category theo từng sản phẩm được xác định */}
+      {/* {products.map((product) => (
             <div key={product.id}>
               <h2>Category của product {product.name}</h2>
               <p>Name: {product.category.name}</p>
@@ -82,7 +87,7 @@ export const MainBody = () => {
               )}
             </div>
           ))} */}
-      </Row>
+
       <Row>
         <Col>Banner</Col>
       </Row>

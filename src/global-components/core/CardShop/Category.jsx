@@ -1,9 +1,9 @@
 import "../../../assets/styles/CardShop.css";
 import { useNavigate } from "react-router-dom";
-const CategoryCard = ({ category }) => {
+const   CategoryCard = ({ category }) => {
   const navigate = useNavigate();
   const handleButtonClick = (name) => {
-     navigate(`category/1?query=${name}`); 
+     navigate(`category/${category.id}?query=${name}`); 
   };
 
   return (
