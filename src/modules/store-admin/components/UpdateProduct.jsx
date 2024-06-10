@@ -1,5 +1,3 @@
-// UpdateProduct.js
-
 import { Button, Input, Modal, Upload } from "antd";
 import { useState } from "react";
 import { updateProduct } from "../apis/ProductAPIs";
@@ -14,6 +12,7 @@ export const UpdateProduct = ({ visible, onClose, product, onUpdate }) => {
   const handleUpdate = async () => {
     setLoading(true);
     try {
+      // Prepare updated product data
       const updatedData = {
         name,
         description,
@@ -21,9 +20,14 @@ export const UpdateProduct = ({ visible, onClose, product, onUpdate }) => {
         image,
       };
 
+      // Call API to update the product
       await updateProduct(product.id, updatedData);
-      onUpdate(); 
-      onClose(); 
+      
+      // Update the product in the parent component
+      onUpdate({ ...product, ...updatedData });
+
+      // Close the modal
+      onClose();
     } catch (error) {
       console.error("Failed to update product:", error);
     } finally {

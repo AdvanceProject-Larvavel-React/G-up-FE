@@ -38,6 +38,7 @@ export const ProductDashboard = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchActiveProducts();
   }, []);
@@ -83,9 +84,14 @@ export const ProductDashboard = () => {
     setUpdateModalVisible(true);
   };
 
-  const handleUpdate = () => {
-    fetchActiveProducts();
+  const handleUpdate = (updatedProduct) => {
+    const updatedProducts = activeProducts.map((prod) =>
+      prod.id === updatedProduct.id ? updatedProduct : prod
+    );
+    setActiveProducts(updatedProducts);
+    setUpdateModalVisible(false);
   };
+
   const showDeleteConfirm = (productId) => {
     Modal.confirm({
       title: "Delete Product",
@@ -183,9 +189,7 @@ export const ProductDashboard = () => {
       title: "Category",
       dataIndex: "category",
       key: "category",
-      render: (category) => (
-        category.name
-      ),
+      render: (category) => category.name,
     },
     {
       title: "Image",
@@ -245,7 +249,7 @@ export const ProductDashboard = () => {
           <Skeleton active />
         ) : (
           <Table
-            dataSource={Array.isArray(activeProducts) ? activeProducts : []} 
+            dataSource={Array.isArray(activeProducts) ? activeProducts : []}
             columns={columns}
             pagination={{
               current: pagination.current,
