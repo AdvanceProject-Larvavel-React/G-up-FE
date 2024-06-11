@@ -5,7 +5,7 @@ import { NavLink } from './buttons/NavLink';
 import { OptionLink } from './selects/OptionLink';
 import AuthLink from './buttons/AuthLink';
 import DeliverTo from './buttons/DeliverTo';
-import { Search } from './inputs/Search';
+import Search  from './inputs/Search';
 import { useEffect, useState } from 'react';
 const Header = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);

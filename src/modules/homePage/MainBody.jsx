@@ -1,14 +1,19 @@
-import { Col, Row } from "antd";
+import {Row,Col } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { message } from "antd";
 import "./styles/MainBody.css";
 import Category from "../../global-components/core/CardShop/Category";
+import BannerList from "./components/Banner";
+// import Search from "../../global-components/core/headers/inputs/Search";
+import SearchChildren from "./components/SearchChildren";
+
 
 export const MainBody = () => {
   const [products, setProducts] = useState([]);
   const [storeInfo, setStoreInfo] = useState({});
   const [categories, setCategories] = useState([]);
+  const [banners, setBanners] = useState([]);
 
   // Fetch the store profile data
   const fetchStoreData = async () => {
@@ -49,10 +54,32 @@ export const MainBody = () => {
     }
   };
 
+  console.log(banners);
+//  const fetchBannersData = async () => {
+//    try {
+//      const response = await axios.get(
+//        "http://localhost:8000/api/banner/get/active"
+//      );
+//      const banner = response.data.data;
+//      setBanners(banner);
+//      console.log(banner);
+//    } catch (error) {
+//      console.error("Error fetching banner data:", error);
+//      message.error("Error fetching banner data");
+//    }
+//  };
+
   useEffect(() => {
     fetchStoreData();
     fetchProductsData();
     fetchCategoryData();
+    // fetchBannersData();
+    setBanners([
+      {
+        img: "https://static.vecteezy.com/system/resources/previews/011/640/737/non_2x/shopping-day-sale-banner-template-design-for-web-or-social-media-vector.jpg",
+      },
+    ]);
+
   }, []);
 
   const filteredBestSellProds = products.filter(
@@ -75,24 +102,17 @@ export const MainBody = () => {
         ))}
         <Col span={2}></Col>
       </Row>
-
-      {/* Bên dưới là category theo từng sản phẩm được xác định */}
-      {/* {products.map((product) => (
-            <div key={product.id}>
-              <h2>Category của product {product.name}</h2>
-              <p>Name: {product.category.name}</p>
-              {console.log(
-                `Category của sản phẩm ${product.id}: `,
-                product.category
-              )}
-            </div>
-          ))} */}
-
       <Row>
-        <Col>Banner</Col>
+        <Col span={24}>
+          <BannerList data={banners} />
+        </Col>
       </Row>
+
       <Row>
-        <Col>Children Search</Col>
+        <Col span={10} style={{ alignContent: "center" }}>
+          <SearchChildren />
+        </Col>
+        
       </Row>
       <Row>
         <Col>Children NavLink</Col>
