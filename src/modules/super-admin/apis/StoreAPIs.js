@@ -1,7 +1,7 @@
 // Get Active Stores
 import BaseApi from "./BaseApis";
 
-const STORE_ENDPOINT = "user";
+const STORE_ENDPOINT = "store";
 
 export const getActiveStores = () => {
     return BaseApi.get(`${STORE_ENDPOINT}/get/active`);

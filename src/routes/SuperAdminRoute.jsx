@@ -4,6 +4,7 @@ import RoutePath from "./RoutePath";
 import NotFoundPage from "../global-components/errors/NotFoundPage";
 import { Dashboard } from "../modules/super-admin/dashboard/Dashboard";
 import { UserDashboard } from "../modules/super-admin/manage-users/UserDashboard";
+import { StoreDashboard } from "../modules/super-admin/manage-stores/StoreDashboard";
 
 const superAdminRoutes = [
   {
@@ -22,7 +23,7 @@ const superAdminRoutes = [
       {path: "search-user", element: <div>Create User</div>,},
       {path: "sort-user", element: <div>Sort User</div>,},
       {path: "export-user", element: <div>Export User</div>,},
-      {path: "list-store", element: <div>List Store</div>,},
+      {path: "list-store", element: <StoreDashboard/>},
       {path: "create-store", element: <div>Create User</div>,},
       {path: "update-store", element: <div>Sort User</div>,},
       {path: "destroy-store-history", element: <div>Export User</div>,},
