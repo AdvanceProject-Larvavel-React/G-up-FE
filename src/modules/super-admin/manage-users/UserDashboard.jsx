@@ -84,9 +84,10 @@ export const UserDashboard = () => {
   const showDeleteConfirm = (userId) => {
     Modal.confirm({
       title: "Delete User",
-      content: "Do you want to delete this user permanently or block them?",
+      content:
+        "Do you want to delete this user permanently, block them, or cancel?",
       okText: "Delete Permanently",
-      cancelText: "Block",
+      cancelText: "Cancel",
       onOk: async () => {
         try {
           setLoading(true);
@@ -99,20 +100,57 @@ export const UserDashboard = () => {
           setLoading(false);
         }
       },
-      onCancel: async () => {
-        try {
-          setLoading(true);
-          await disableUser(userId);
-          message.success("User blocked successfully");
-          fetchActiveUsers();
-        } catch (error) {
-          message.error("Failed to block user");
-        } finally {
-          setLoading(false);
-        }
+      onCancel: () => {},
+      okButtonProps: {
+        style: { display: "none" },
       },
+      footer: [
+        <Button
+          key="delete"
+          type="danger"
+          onClick={async () => {
+            try {
+              setLoading(true);
+              await destroyUser(userId);
+              message.success("User deleted permanently");
+              fetchActiveUsers();
+              Modal.destroyAll();
+            } catch (error) {
+              message.error("Failed to delete user permanently");
+            } finally {
+              setLoading(false);
+            }
+          }}
+        >
+          <Button style={{ backgroundColor: "red" }}>Delete Permanently</Button>
+        </Button>,
+        <Button
+          key="block"
+          type="primary"
+          style={{marginRight:"15px"}}
+          onClick={async () => {
+            try {
+              setLoading(true);
+              await disableUser(userId);
+              message.success("User blocked successfully");
+              fetchActiveUsers();
+              Modal.destroyAll();
+            } catch (error) {
+              message.error("Failed to block user");
+            } finally {
+              setLoading(false);
+            }
+          }}
+        >
+          Block
+        </Button>,
+        <Button key="cancel" onClick={() => Modal.destroyAll()}>
+          Cancel
+        </Button>,
+      ],
     });
   };
+
   const columns = [
     {
       title: "ID",
