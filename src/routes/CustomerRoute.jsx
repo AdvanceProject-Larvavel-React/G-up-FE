@@ -11,6 +11,7 @@ import CategoryDetail from "../modules/support-page/CategoryDetail"
 import ContentSection from "../modules/support-page/components/Content";
 import { Index } from "../modules/detail-product/Index";
 import { FormCheckOut } from "../modules/cart/components/FormCheckOut.jsx";
+import PaymentStatus from "../modules/status-order/components/PaymentStatus.jsx";
 const CustomerRoutes = [
   {
     path: "",
@@ -66,6 +67,8 @@ const CustomerRoutes = [
   {
     path: "checkout",
     element: <FormCheckOut />,
-  }
+  },
+  {path:"/payment/redirect", element:<PaymentStatus/>},
+
 ];
 export default CustomerRoutes;
