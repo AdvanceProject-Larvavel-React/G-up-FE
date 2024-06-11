@@ -40,12 +40,14 @@ export const CategoryBody = () => {
         <FaChevronLeft className="back" size={24} />
       </Link>
       <h2 className="titleCa text-center">{header}</h2>
-      <Row gutter={[16, 16]} justify="center">
+      <Row className="catego " gutter={[16, 16]}>
+        <Col span={2}></Col>
         {filteredProd.map((prod) => (
-          <Col key={prod.id} xs={24} sm={12} md={6} lg={6} xl={6}>
+          <Col span={4} key={prod.id}>
             <Card data={prod} />
           </Col>
         ))}
+        <Col span={2}></Col>
       </Row>
     </>
   );

@@ -6,7 +6,8 @@ import "./styles/MainBody.css";
 import Category from "../../global-components/core/CardShop/Category";
 import BannerList from "./components/Banner";
 // import Search from "../../global-components/core/headers/inputs/Search";
-import SearchChildren from "./components/SearchChildren";
+// import SearchChildren from "./components/Title";
+import Title from "./components/Title";
 
 
 export const MainBody = () => {
@@ -108,11 +109,10 @@ export const MainBody = () => {
         </Col>
       </Row>
 
-      <Row>
-        <Col span={10} style={{ alignContent: "center" }}>
-          <SearchChildren />
+      <Row style={{ justifyContent: "center" }}>
+        <Col>
+          <Title />
         </Col>
-        
       </Row>
       <Row>
         <Col>Children NavLink</Col>
