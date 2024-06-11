@@ -15,7 +15,10 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        marginTop: '50px',
+     
+      
+
     },
     button: {
         backgroundColor: '#FF4500',
@@ -24,6 +27,7 @@ const styles = {
         color: '#FFFFFF',
         cursor: 'pointer',
         padding: '12px 24px',
+       
         fontSize: '16px',
         fontWeight: 'bold',
         transition: 'background-color 0.3s ease',

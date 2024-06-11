@@ -7,8 +7,8 @@ import Header from "../../global-components/core/headers/Header";
 import FollowButton from "../../global-components/core/button/FollowButton";
 import HermesShop from "./components/HermesShop";
 import NavigationBar from "./components/NavigationBar";
-// import PersonalSuggestions from "./components/PersonalSuggestions";
-// import SellingProducts from "./components/SellingProducts";
+import ProductCard from "./components/ProductCard";
+
 
 
 const Store = () => {
@@ -60,19 +60,18 @@ const Store = () => {
                     <Col span={24}> <Header /></Col>
                 </Row>
                 <main>
-                    <Row>
-                    <Col span={16}> <HermesShop /></Col>
-                    <Col span={8}> <FollowButton /></Col>
+                <Row>
+                    <Col span={16}><HermesShop /></Col>
+                    <Col span={3} offset={3}>
+                        <FollowButton />
+                    </Col>
                    </Row>
                    <Row>
                     <Col span={24}> <NavigationBar /></Col>
                    </Row>
-                   {/* <Row>
-                    <Col span={24}> <PersonalSuggestions /></Col>
-                   </Row>
                    <Row>
-                    <Col span={24}> <SellingProducts /></Col>
-                   </Row> */}
+                    <Col span={24}> <ProductCard /></Col>
+                   </Row>
                 </main>
                 <Row>
                     <Col span={24}> <Footer /></Col>
