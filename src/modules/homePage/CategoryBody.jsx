@@ -27,7 +27,7 @@ export const CategoryBody = () => {
     }
   };
 
-  useEffect(() => {3
+  useEffect(() => {
     fetchProductsData();
   }, []);
 

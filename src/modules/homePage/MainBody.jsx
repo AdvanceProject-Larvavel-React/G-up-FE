@@ -1,14 +1,16 @@
-import {Row,Col } from "antd";
+import { Row, Col } from "antd";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { message } from "antd";
 import "./styles/MainBody.css";
-import Category from "../../global-components/core/CardShop/Category";
+import Category from "../../global-components/core/CardCategory/Category";
 import BannerList from "./components/Banner";
 // import Search from "../../global-components/core/headers/inputs/Search";
 // import SearchChildren from "./components/Title";
 import Title from "./components/Title";
-
+import Store from "./components/Store";
+import Product from "./components/Product";
+import Discover from "./components/Discover";
 
 export const MainBody = () => {
   const [products, setProducts] = useState([]);
@@ -56,19 +58,19 @@ export const MainBody = () => {
   };
 
   console.log(banners);
-//  const fetchBannersData = async () => {
-//    try {
-//      const response = await axios.get(
-//        "http://localhost:8000/api/banner/get/active"
-//      );
-//      const banner = response.data.data;
-//      setBanners(banner);
-//      console.log(banner);
-//    } catch (error) {
-//      console.error("Error fetching banner data:", error);
-//      message.error("Error fetching banner data");
-//    }
-//  };
+  //  const fetchBannersData = async () => {
+  //    try {
+  //      const response = await axios.get(
+  //        "http://localhost:8000/api/banner/get/active"
+  //      );
+  //      const banner = response.data.data;
+  //      setBanners(banner);
+  //      console.log(banner);
+  //    } catch (error) {
+  //      console.error("Error fetching banner data:", error);
+  //      message.error("Error fetching banner data");
+  //    }
+  //  };
 
   useEffect(() => {
     fetchStoreData();
@@ -80,7 +82,6 @@ export const MainBody = () => {
         img: "https://static.vecteezy.com/system/resources/previews/011/640/737/non_2x/shopping-day-sale-banner-template-design-for-web-or-social-media-vector.jpg",
       },
     ]);
-
   }, []);
 
   const filteredBestSellProds = products.filter(
@@ -114,17 +115,22 @@ export const MainBody = () => {
           <Title />
         </Col>
       </Row>
+
       <Row>
-        <Col>Children NavLink</Col>
+        <Col span={24}>
+          <Product />
+        </Col>
       </Row>
       <Row>
-        <Col>Slide product component</Col>
+        <Col span={24}>
+          <Store />
+        </Col>
       </Row>
+      
       <Row>
-        <Col>Category</Col>
-      </Row>
-      <Row>
-        <Col>Daily discover</Col>
+        <Col span={24}>
+          <Discover data={filteredBestSellProds} />
+        </Col>
       </Row>
     </>
   );
