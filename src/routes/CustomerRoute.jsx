@@ -14,6 +14,8 @@ import { FormCheckOut } from "../modules/cart/components/FormCheckOut.jsx";
 import { MainLayout } from "../layouts/MainLayout.jsx";
 import { MainBody } from "../modules/homePage/MainBody.jsx";
 import { CategoryBody } from "../modules/homePage/CategoryBody.jsx";
+import PaymentStatus from "../modules/status-order/components/PaymentStatus.jsx";
+import NotFoundPage from "../global-components/errors/NotFoundPage.jsx";
 const CustomerRoutes = [
   {
     path: "",
@@ -66,7 +68,7 @@ const CustomerRoutes = [
   },
   {
     path: RoutePath.ERR_404_ROUTE,
-    element: <>NotFound</>,
+    element: <NotFoundPage/>,
   },
   {
     path: "contact",
@@ -76,5 +78,6 @@ const CustomerRoutes = [
     path: "checkout",
     element: <FormCheckOut />,
   },
+  {path:"/payment/redirect", element:<PaymentStatus/>},
 ];
 export default CustomerRoutes;

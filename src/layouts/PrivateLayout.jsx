@@ -1,10 +1,11 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import LayoutDashboard from '../modules/super-admin/layouts/LayoutDashboard';
+
 
 const PrivateLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,19 +21,9 @@ const PrivateLayout = () => {
     return <Navigate to="/login" />;
   }
 
-  if (location.pathname.includes("/dashboard")) {
-    return (
-      <div>
-        <a>Dashboard Layout</a>
-        <Outlet />
-      </div>
-    );
-  } 
-
   return (
     <div>
-      Private Layout Default
-      <Outlet />
+      <LayoutDashboard/>
     </div>
   );
 };

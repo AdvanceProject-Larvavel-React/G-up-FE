@@ -6,6 +6,7 @@ import Profile from "../modules/profile/components/profile/Profile";
 import InformationStore from "../modules/profile/components/information-store/InformationStore";
 import SaveChange from "../modules/profile/components/save-change/SaveChange";
 import Setting from "../modules/profile/components/settings/Setting";
+import NotFoundPage from "../global-components/errors/NotFoundPage";
 
 
 
@@ -54,7 +55,7 @@ const storeOwnerRoutes = [
       },
       {
         path: RoutePath.ERR_404_ROUTE,
-        element: <>NotFound</>,
+        element: <NotFoundPage/>,
       }
     ],
   },
