@@ -97,7 +97,7 @@ const RegisterForm = () => {
           <Form.Item label="Role" style={{ color: 'white' }}>
             <Select defaultValue={1} onChange={handleRoleChange}>
               <Select.Option value={1}>Customer</Select.Option>
-              <Select.Option value={2}>Store Owner</Select.Option>
+              <Select.Option value={3}>Store Owner</Select.Option>
             </Select>
           </Form.Item>
         </InputContainer>
