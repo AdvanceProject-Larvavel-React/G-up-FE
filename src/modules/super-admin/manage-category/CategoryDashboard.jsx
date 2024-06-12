@@ -1,49 +1,53 @@
-import { Button, Col, Modal, Row, Skeleton, Space, Table, message } from "antd";
 import { useEffect, useState } from "react";
+import { Button, Col, Modal, Row, Skeleton, Space, Table, message } from "antd";
 import { convertDateToDDMMYYYY } from "../../../utils/date.utils";
-import { destroyStore, disableStore, getActiveStores } from "../apis/StoreAPIs";
-import { UpdateStore } from "./components/UpdateStore";
-import { CreateStore } from "./components/CreateStore";
+import { UpdateCategory } from "./components/UpdateCategory";
+import { CreateCategory } from "./components/CreateCategory";
+import { destroyCategory, disableCategory, getActiveCategories } from "../apis/CategoryAPIs";
 
-export const StoreDashboard = () => {
-  const [activeStore, setActiveStores] = useState([]);
+export const CategoryDashboard = () => {
+  const [activeCategories, setActiveCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [totalStore, setTotalStores] = useState();
+  const [totalCategories, setTotalCategories] = useState();
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: 7,
     total: 0,
   });
   const [sortOrder, setSortOrder] = useState(null);
-  const [imagePreviewVisible, setImagePreviewVisible] = useState(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
-  const [selectedStore, setSelectedStore] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [createModalVisible, setCreateModalVisible] = useState(false);
+
   const handleCreateModalOpen = () => {
     setCreateModalVisible(true);
   };
-  const fetchActiveStore = async () => {
+
+  const fetchActiveCategories = async () => {
     try {
-      const response = await getActiveStores();
-      setActiveStores(response.data.data);
-      setTotalStores(response.data.data.length);
+      const response = await getActiveCategories();
+      setActiveCategories(response.data.data);
+      setTotalCategories(response.data.data.length);
       setPagination({
         ...pagination,
         total: response.data.data.length,
       });
     } catch (error) {
-      setError("Failed to fetch active users.");
+      setError("Failed to fetch active categories.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchActiveStore();
+    fetchActiveCategories();
   }, []);
-
+  const handleSortToggle = () => {
+    setSortOrder(sortOrder === "ascend" ? "descend" : "ascend");
+    const sortedData = [...activeCategories].reverse();
+    setActiveCategories(sortedData);
+  };
   const handleTableChange = (pagination, filters, sorter) => {
     setPagination({
       ...pagination,
@@ -53,54 +57,41 @@ export const StoreDashboard = () => {
 
     if (sorter && sorter.order) {
       setSortOrder(sorter.order);
-      const sortedData = [...activeStore].sort((a, b) => {
+      const sortedData = [...activeCategories].sort((a, b) => {
         if (sorter.order === "ascend") {
           return a[sorter.field] > b[sorter.field] ? 1 : -1;
         } else {
           return a[sorter.field] < b[sorter.field] ? 1 : -1;
         }
       });
-      setActiveStores(sortedData);
+      setActiveCategories(sortedData);
     }
   };
-  const handlePreviewImage = (url) => {
-    setImagePreviewUrl(url);
-    setImagePreviewVisible(true);
-  };
 
-  const handleClosePreview = () => {
-    setImagePreviewVisible(false);
-    setImagePreviewUrl("");
-  };
-  const handleSortToggle = () => {
-    setSortOrder(sortOrder === "ascend" ? "descend" : "ascend");
-    const sortedData = [...activeStore].reverse();
-    setActiveStores(sortedData);
-  };
-
-  const handleUpdateClick = (user) => {
-    setSelectedStore(user);
+  const handleUpdateClick = (category) => {
+    setSelectedCategory(category);
     setUpdateModalVisible(true);
   };
 
   const handleUpdate = () => {
-    fetchActiveStore();
+    fetchActiveCategories();
   };
-  const showDeleteConfirm = (userId) => {
+
+  const showDeleteConfirm = (categoryId) => {
     Modal.confirm({
-      title: "Delete User",
+      title: "Delete Category",
       content:
-        "Do you want to delete this user permanently, block them, or cancel?",
+        "Do you want to delete this category permanently, disable it, or cancel?",
       okText: "Delete Permanently",
       cancelText: "Cancel",
       onOk: async () => {
         try {
           setLoading(true);
-          await destroyStore(userId);
-          message.success("User deleted permanently");
-          fetchActiveStore();
+          await destroyCategory(categoryId);
+          message.success("Category deleted permanently");
+          fetchActiveCategories();
         } catch (error) {
-          message.error("Failed to delete user permanently");
+          message.error("Failed to delete category permanently");
         } finally {
           setLoading(false);
         }
@@ -116,12 +107,12 @@ export const StoreDashboard = () => {
           onClick={async () => {
             try {
               setLoading(true);
-              await destroyStore(userId);
-              message.success("User deleted permanently");
-              fetchActiveStore();
+              await destroyCategory(categoryId);
+              message.success("Category deleted permanently");
+              fetchActiveCategories();
               Modal.destroyAll();
             } catch (error) {
-              message.error("Failed to delete user permanently");
+              message.error("Failed to delete category permanently");
             } finally {
               setLoading(false);
             }
@@ -130,24 +121,24 @@ export const StoreDashboard = () => {
           <Button style={{ backgroundColor: "red" }}>Delete Permanently</Button>
         </Button>,
         <Button
-          key="block"
+          key="disable"
           type="primary"
           style={{ marginRight: "15px" }}
           onClick={async () => {
             try {
               setLoading(true);
-              await disableStore(userId);
-              message.success("User blocked successfully");
-              fetchActiveStore();
+              await disableCategory(categoryId);
+              message.success("Category disabled successfully");
+              fetchActiveCategories();
               Modal.destroyAll();
             } catch (error) {
-              message.error("Failed to block user");
+              message.error("Failed to disable category");
             } finally {
               setLoading(false);
             }
           }}
         >
-          Block
+          Disable
         </Button>,
         <Button key="cancel" onClick={() => Modal.destroyAll()}>
           Cancel
@@ -175,37 +166,9 @@ export const StoreDashboard = () => {
       key: "description",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Avatar",
-      dataIndex: "avatar",
-      key: "avatar",
-      render: (avatar) => (
-        <img
-          src={avatar}
-          alt="Avatar"
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: "10px",
-            border: "1px solid grey",
-          }}
-          onClick={() => handlePreviewImage(avatar)}
-        />
-      ),
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
     {
       title: "Created at",
@@ -230,19 +193,19 @@ export const StoreDashboard = () => {
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
-        <h1 style={{ textAlign: "center" }}>List Store</h1>
+        <h1 style={{ textAlign: "center" }}>List Categories</h1>
         <Button
           type="primary"
           onClick={handleCreateModalOpen}
           style={{ marginBottom: 16, marginRight: "10px" }}
         >
-          Create New Store
+          Create New Category
         </Button>
         <Button
           type="primary"
           onClick={() => {
             setLoading(true);
-            fetchActiveStore();
+            fetchActiveCategories();
           }}
           style={{ marginBottom: 16 }}
         >
@@ -251,12 +214,14 @@ export const StoreDashboard = () => {
         <Button onClick={handleSortToggle} style={{ marginLeft: "10px" }}>
           {sortOrder === "ascend" ? "Sort Descending" : "Sort Ascending"}
         </Button>
-        <div style={{ marginBottom: 16 }}>Total Users: {totalStore}</div>
+        <div style={{ marginBottom: 16 }}>
+          Total Categories: {totalCategories}
+        </div>
         {loading ? (
           <Skeleton active />
         ) : (
           <Table
-            dataSource={activeStore}
+            dataSource={activeCategories}
             columns={columns}
             pagination={{
               current: pagination.current,
@@ -270,20 +235,13 @@ export const StoreDashboard = () => {
           />
         )}
         {error && <div>Error: {error}</div>}
-        <Modal
-          visible={imagePreviewVisible}
-          onCancel={handleClosePreview}
-          footer={null}
-        >
-          <img src={imagePreviewUrl} alt="Preview" style={{ width: "100%" }} />
-        </Modal>
-        <UpdateStore
+        <UpdateCategory
           visible={updateModalVisible}
           onClose={() => setUpdateModalVisible(false)}
-          store={selectedStore}
+          category={selectedCategory}
           onUpdate={handleUpdate}
         />
-        <CreateStore
+        <CreateCategory
           visible={createModalVisible}
           onClose={() => setCreateModalVisible(false)}
           onCreate={handleUpdate}

@@ -4,6 +4,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   SettingOutlined,
+  ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import {
@@ -17,6 +18,7 @@ import {
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo-gup.png";
+import Logout from "../../../global-components/core/button/Logout";
 const { Header, Content, Sider } = Layout;
 const { SubMenu, Item } = Menu;
 
@@ -33,9 +35,7 @@ const items2 = [
     label: "Manage User",
     children: [
       { key: "list-user", label: "All Users" },
-      { key: "search-user", label: "Search User" },
-      { key: "sort-user", label: "Sort Users" },
-      { key: "export-user", label: "Export Users" },
+      { key: "list-disable-user", label: "List User Disabled" },
     ],
   },
   {
@@ -44,10 +44,16 @@ const items2 = [
     label: "Manage Store",
     children: [
       { key: "list-store", label: "All Stores" },
-      { key: "create-store", label: "Create" },
-      { key: "update-store", label: "Update" },
-      { key: "destroy-store-history", label: "Destroy" },
-      { key: "disable-store-history", label: "Disable" },
+      { key: "list-disable-store", label: "List Store Disabled" },
+    ],
+  },
+  {
+    key: "manage-category",
+    icon: <ShoppingCartOutlined />,
+    label: "Manage Category",
+    children: [
+      { key: "list-category", label: "All Category" },
+      { key: "list-disable-category", label: "List Category Disabled" },
     ],
   },
   {
@@ -55,8 +61,8 @@ const items2 = [
     icon: <SettingOutlined />,
     label: "Settings",
     children: [
-      { key: "profile", label: "Profile" },
-      { key: "account", label: "Account",},
+      { key: "theme-options", label: "Color Theme" },
+      { key: "language", label: "Languages",},
     ],
   },
 ];
@@ -97,14 +103,17 @@ const LayoutDashboard = () => {
           <div className="demo-logo" style={{ flex: 1 }}>
             <img src={logo} alt="Logo" style={{ height: 65 }} />
           </div>
-
           <Switch
             checkedChildren="🌙"
             unCheckedChildren="☀️"
             checked={darkMode}
             onChange={handleThemeChange}
-            style={{ flex: 0 }}
+            style={{ flex: 0 , marginRight:"30px"}}
           />
+          <Logout/>
+          <div
+             style={{ flex: 0 , marginRight:"30px"}}
+          ></div>
         </Header>
         <Layout>
           <Sider
@@ -215,5 +224,4 @@ const LayoutDashboard = () => {
     </ConfigProvider>
   );
 };
-
 export default LayoutDashboard;
