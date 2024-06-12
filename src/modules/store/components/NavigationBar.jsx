@@ -62,7 +62,7 @@ const NavigationBar = () => {
     'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184606/shop_du7qog.jpg',
     'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184595/products_uzfmeu.jpg',
     'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184449/products_list_euqsyk.jpg',
-    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184424/live_urtcwb.jpg'
+    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184424/live_urtcwb.jpg',
   ];
 
   return (
@@ -87,7 +87,7 @@ const NavigationBar = () => {
       <Carousel autoplay ref={carouselRef}>
         {carouselItems.map((src, index) => (
           <div key={index} className="carousel-content">
-            <img src={src} alt={items[index].title} style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
+            <img src={src} alt={items[index].title} style={{ width: '100%', height: '600px' }} />
           </div>
         ))}
       </Carousel>

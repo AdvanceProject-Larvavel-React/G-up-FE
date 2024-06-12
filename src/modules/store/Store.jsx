@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Col } from 'antd';
+import "../store/styles/Store.css"
 import { List, message } from 'antd';
 import Footer from "../../global-components/core/footers/Footer";
 import Header from "../../global-components/core/headers/Header";
@@ -91,10 +92,7 @@ const Store = () => {
                 </main>
                 <Row>
                     <Col span={24}> <Footer /></Col>
-                </Row>
-        
-            {/* <p>Shop nane: {storeInfo.name}</p> */}
-            
+                </Row>         
         </>
     );
 };

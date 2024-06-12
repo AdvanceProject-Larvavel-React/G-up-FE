@@ -38,16 +38,7 @@ const App = () => {
       title: 'GS-Skin White in Creamy Pack Whitening',
       price: 15.99,
     },
-    {
-      image: 'product3.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product4.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
+    
    
   ];
 
