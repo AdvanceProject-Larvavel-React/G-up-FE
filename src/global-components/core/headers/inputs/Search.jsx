@@ -1,7 +1,17 @@
 import { Input } from 'antd';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const SearchContainer = styled.div`
+    max-width: 90%;
+    width: 100%;
+    height: 50px; /* Increase the height as needed */
+    padding: 10px;
+`;
+
 export const Search = () => {
     const { Search } = Input;
+
     const onSearch = async (value) => {
         try {
             const response = await axios.post(`http://localhost:8000/api/user-service/post/search?value=${value}`, { value });
@@ -12,14 +22,16 @@ export const Search = () => {
         } catch (error) {
             console.error("Error during search request:", error);
         }
-    } 
+    };
+
     return (
-        <div style={styleSearch}>
-            <Search placeholder="Search Product, Category, Store..." allowClear onSearch={onSearch} />
-        </div>
-    )
-}
-const styleSearch = {
-    "maxWidth": "80%",
-    "width": "100%",
-}
+        <SearchContainer>
+            <Search
+                placeholder="Search Product, Category, Store..."
+                allowClear
+                onSearch={onSearch}
+                style={{ height: '100%' }} // Make the input fill the container height
+            />
+        </SearchContainer>
+    );
+};
