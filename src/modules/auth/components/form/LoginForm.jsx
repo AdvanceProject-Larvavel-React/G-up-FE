@@ -107,7 +107,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 90vh;
+  height: 98vh;
   width: 30vw;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -119,7 +119,7 @@ const MainContainer = styled.div`
   letter-spacing: 0.4rem;
   @media only screen and (max-width: 320px) {
     width: 80vw;
-    height: 90vh;
+    height: 98vh;
     hr {
       margin-bottom: 0.3rem;
     }
@@ -129,27 +129,27 @@ const MainContainer = styled.div`
   }
   @media only screen and (min-width: 360px) {
     width: 80vw;
-    height: 90vh;
+    height: 98vh;
     h4 {
       font-size: small;
     }
   }
   @media only screen and (min-width: 411px) {
     width: 80vw;
-    height: 90vh;
+    height: 98vh;
   }
 
   @media only screen and (min-width: 768px) {
     width: 80vw;
-    height: 90vh;
+    height: 98vh;
   }
   @media only screen and (min-width: 1024px) {
     width: 70vw;
-    height: 90vh;
+    height: 98vh;
   }
   @media only screen and (min-width: 1280px) {
     width: 30vw;
-    height: 90vh;
+    height: 98vh;
   }
 `;
 const StyledLink = styled(Link)`
@@ -166,6 +166,15 @@ const StyledLink = styled(Link)`
 `;
 const WelcomeText = styled.h3`
   margin: 3rem 0 2rem 0;
+  @media only screen and (max-width: 320px) {
+    font-size: 1rem; 
+  }
+  @media only screen and (min-width: 321px) and (max-width: 768px) {
+    font-size: 1rem; 
+  }
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    font-size: 1rem; 
+  }
 `;
 
 const InputContainer = styled.div`
@@ -178,7 +187,7 @@ const InputContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0 1rem 0;
   width: 100%;
   display: flex;
   align-items: center;

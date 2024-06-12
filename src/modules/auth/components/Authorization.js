@@ -18,8 +18,10 @@ export const Authorization = () => {
     if (token) {
       if (role == 2) {
         navigate("/dashboard");
+        window.location.reload();
       } else if (role == 1 || role == 3) {
         navigate("/");
+        window.location.reload();
       }
     }
   };
