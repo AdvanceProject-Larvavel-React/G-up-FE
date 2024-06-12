@@ -4,7 +4,6 @@ import { Row, Col } from 'antd';
 import { List, message } from 'antd';
 import Footer from "../../global-components/core/footers/Footer";
 import Header from "../../global-components/core/headers/Header";
-import FollowButton from "../../global-components/core/button/FollowButton";
 import HermesShop from "./components/HermesShop";
 import NavigationBar from "./components/NavigationBar";
 import ProductCard from "./components/ProductCard";
@@ -54,48 +53,49 @@ const Store = () => {
     console.log("Thông tin của Sản phẩm của store đó: ", filteredProducts);
 
     return (
-        <div className="checkout-page">
-        
+        <>
                 <Row>
                     <Col span={24}> <Header /></Col>
                 </Row>
                 <main>
                 <Row>
-                    <Col span={16}><HermesShop /></Col>
-                    <Col span={3} offset={3}>
-                        <FollowButton />
-                    </Col>
-                   </Row>
+                    <Col span={1}/>
+                    <Col span={22}><HermesShop /></Col>
+                    <Col span={1} />
+                </Row>
                    <Row>
                     <Col span={24}> <NavigationBar /></Col>
                    </Row>
                    <Row>
                     <Col span={24}> <ProductCard /></Col>
-                   </Row>
+                </Row>
+                <Row>
+                {
+                    filteredProducts.map(product => (
+                        <div key={product.id}>
+                            <h2>CAtegory cảu product {product.name}</h2>
+                            <p>ID: {product.category.id}</p>
+                            <p>Name: {product.category.name}</p>
+                            {console.log(`Category của sản phẩm ${product.id}: `, product.category)}
+                        </div>
+                    ))
+                }
+                <List
+                    grid={{ gutter: 16, column: 4 }}
+                    dataSource={filteredProducts}
+                    renderItem={item => (
+                        item
+                    )}
+                    />
+                </Row>
                 </main>
                 <Row>
                     <Col span={24}> <Footer /></Col>
                 </Row>
         
-            <p>Shop nane: {storeInfo.name}</p>
-            {
-                filteredProducts.map(product => (
-                    <div key={product.id}>
-                        <h2>CAtegory cảu product {product.name}</h2>
-                        <p>ID: {product.category.id}</p>
-                        <p>Name: {product.category.name}</p>
-                        {console.log(`Category của sản phẩm ${product.id}: `, product.category)}
-                    </div>
-                ))
-            }
-            <List
-                grid={{ gutter: 16, column: 4 }}
-                dataSource={filteredProducts}
-                renderItem={item => (
-                    item
-                )}
-            />
-        </div>
+            {/* <p>Shop nane: {storeInfo.name}</p> */}
+            
+        </>
     );
 };
 

@@ -48,46 +48,7 @@ const App = () => {
       title: 'GS-Skin White in Creamy Pack Whitening',
       price: 15.99,
     },
-    {
-      image: 'product5.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product6.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product7.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product8.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product9.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product10.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product11.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
-    {
-      image: 'product12.jpg',
-      title: 'GS-Skin White in Creamy Pack Whitening',
-      price: 15.99,
-    },
+   
   ];
 
   return (
@@ -102,11 +63,13 @@ const App = () => {
 };
 
 const Container = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
   position: relative; /* Thêm position: relative vào Container */
+  margin-top:20px;
 `;
 const Header = styled.h1`
   font-size: 2rem;

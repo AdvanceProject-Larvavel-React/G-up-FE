@@ -1,6 +1,4 @@
-// import React from 'react';
-
-const FollowButton = () => {
+const FollowBtn = () => {
     return (
         <div style={styles.container}>
             <button style={styles.button}>
@@ -13,11 +11,7 @@ const FollowButton = () => {
 const styles = {
     container: {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginTop: '50px',
-     
-      
 
     },
     button: {
@@ -27,7 +21,6 @@ const styles = {
         color: '#FFFFFF',
         cursor: 'pointer',
         padding: '12px 24px',
-       
         fontSize: '16px',
         fontWeight: 'bold',
         transition: 'background-color 0.3s ease',
@@ -38,6 +31,7 @@ const styles = {
     text: {
         textTransform: 'uppercase',
     },
+ 
 };
 
-export default FollowButton;
+export default FollowBtn;

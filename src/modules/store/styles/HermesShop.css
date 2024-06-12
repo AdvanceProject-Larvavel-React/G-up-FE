@@ -21,7 +21,8 @@
     height: 40px;
     background-color: #fff;
     border-radius: 4px;
-    margin-right: 10px;
+   margin-left: 10px;
+  
 }
 
 .logo-text {
@@ -44,4 +45,6 @@
 .follower-count {
     font-size: 16px;
     color: #666;
+    margin-top: 40px;
+
 }
