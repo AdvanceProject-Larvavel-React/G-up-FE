@@ -94,7 +94,25 @@ export const MainBody = () => {
 
   return (
     <>
-      <h2 className="text-center">Category List</h2>
+      <Row
+        style={{
+          margin: "25px auto",
+          textAlignItem: "center",
+          textAlign: "center",
+          justifyContent: "center",
+          backgroundColor: "white",
+          borderRadius: 5,
+          height: 40,
+          width: 600,
+          marginTop: 30,
+          marginBottom: 40,
+        }}
+      >
+        <h4 style={{ textAlign: "center", marginTop: 5 }} className="Dtitle">
+          CATEGORY LIST
+        </h4>
+      </Row>
+
       <Row className="catego " gutter={[16, 16]}>
         <Col span={2}></Col>
         {categories.map((category) => (
@@ -104,6 +122,7 @@ export const MainBody = () => {
         ))}
         <Col span={2}></Col>
       </Row>
+
       <Row>
         <Col span={24}>
           <BannerList data={banners} />
@@ -128,11 +147,6 @@ export const MainBody = () => {
           STUFF YOUR BANG WITH DEALS
         </h4>
       </Row>
-      {/* <Row style={{ justifyContent: "center" }}>
-        <Col>
-          <Title />
-        </Col>
-      </Row> */}
 
       <Row>
         <Col span={24}>
@@ -157,6 +171,7 @@ export const MainBody = () => {
           STORES
         </h4>
       </Row>
+      
       <Row>
         <Col span={24}>
           <Store />
