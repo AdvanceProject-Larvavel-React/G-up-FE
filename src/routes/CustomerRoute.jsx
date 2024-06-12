@@ -12,6 +12,7 @@ import ContentSection from "../modules/support-page/components/Content";
 import { Index } from "../modules/detail-product/Index";
 import { FormCheckOut } from "../modules/cart/components/FormCheckOut.jsx";
 import PaymentStatus from "../modules/status-order/components/PaymentStatus.jsx";
+import NotFoundPage from "../global-components/errors/NotFoundPage.jsx";
 const CustomerRoutes = [
   {
     path: "",
@@ -58,7 +59,7 @@ const CustomerRoutes = [
   },
   {
     path: RoutePath.ERR_404_ROUTE,
-    element: <>NotFound</>,
+    element: <NotFoundPage/>,
   },
   {
     path: "contact",
