@@ -12,6 +12,8 @@ const styles = {
     container: {
         display: 'flex',
         marginTop: '50px',
+        marginRight: '60px',
+        
 
     },
     button: {

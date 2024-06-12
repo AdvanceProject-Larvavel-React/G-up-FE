@@ -19,13 +19,10 @@
 
 .nav-link {
     color: #ffffff;
-    /* Set text color to white */
     font-size: 16px;
     font-weight: bold;
-    /* Make the text bold */
     text-align: center;
     text-decoration: none;
-    /* Remove underline */
     padding: 10px 20px;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -34,4 +31,5 @@
 .nav-link:hover {
     background-color:#ffffff;
     color: #ffffff;
+   
 }

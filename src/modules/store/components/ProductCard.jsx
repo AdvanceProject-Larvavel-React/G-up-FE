@@ -55,7 +55,7 @@ const App = () => {
     <Container>
       <Header>SELLING PRODUCTS</Header>
       <ProductGrid products={products} />
-      <SeeAllButton>
+      <SeeAllButton style={{ backgroundColor:'red'}}>
         SEE ALL <RightCircleIcon />
       </SeeAllButton>
     </Container>
