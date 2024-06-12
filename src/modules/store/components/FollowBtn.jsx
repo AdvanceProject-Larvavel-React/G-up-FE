@@ -13,8 +13,8 @@ const styles = {
         display: 'flex',
         marginTop: '50px',
         marginRight: '60px',
-        
-
+        justifyContent: 'flex-end',
+        paddingRight: '20px', // Thêm khoảng cách 20px ở phía bên phải
     },
     button: {
         backgroundColor: '#FF4500',
@@ -26,14 +26,13 @@ const styles = {
         fontSize: '16px',
         fontWeight: 'bold',
         transition: 'background-color 0.3s ease',
-        '&:hover': {
+        ':hover': {
             backgroundColor: '#FF6347',
         },
     },
     text: {
         textTransform: 'uppercase',
     },
- 
 };
 
 export default FollowBtn;

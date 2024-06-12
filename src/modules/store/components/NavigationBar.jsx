@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Row, Col, Carousel } from 'antd';
 import styled from 'styled-components';
 
@@ -14,7 +14,7 @@ const NavigationBarContainer = styled.div`
   .carousel-content {
     text-align: center;
     height: 400px;
-    line-height: 200px;
+    line-height: 600px; /* Sửa lại line-height để phù hợp với chiều cao của ảnh */
     background: #364d79;
     color: #fff;
     overflow: hidden;
@@ -49,6 +49,7 @@ const NavigationBarItem = styled(Col)`
 
 const NavigationBar = () => {
   const [activeKey, setActiveKey] = useState('SHOP');
+  const carouselRef = useRef(null);
 
   const items = [
     { key: 'SHOP', title: 'SHOP' },
@@ -58,7 +59,10 @@ const NavigationBar = () => {
   ];
 
   const carouselItems = [
-    'https://tse2.mm.bing.net/th?id=OIP.7hGzglnsY1nLTQBy5gV7LAHaEK&pid=Api&P=0&h=220',
+    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184606/shop_du7qog.jpg',
+    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184595/products_uzfmeu.jpg',
+    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184449/products_list_euqsyk.jpg',
+    'https://res.cloudinary.com/dvgiuwfuv/image/upload/v1718184424/live_urtcwb.jpg'
   ];
 
   return (
@@ -72,7 +76,7 @@ const NavigationBar = () => {
               className={item.key === activeKey ? 'active' : ''}
               onClick={() => {
                 setActiveKey(item.key);
-                document.querySelector('.ant-carousel').slick.slickGoTo(index);
+                carouselRef.current.goTo(index);
               }}
             >
               <div className="nav-item">{item.title}</div>
@@ -80,10 +84,10 @@ const NavigationBar = () => {
           ))}
         </Row>
       </div>
-      <Carousel autoplay ref={carousel => (window.carousel = carousel)}>
+      <Carousel autoplay ref={carouselRef}>
         {carouselItems.map((src, index) => (
           <div key={index} className="carousel-content">
-            <img src={src} alt={items[index].title} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+            <img src={src} alt={items[index].title} style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
           </div>
         ))}
       </Carousel>
