@@ -56,7 +56,7 @@ export const Discover = () => {
           </Col>
         ))}
       </Row>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "right" }}>
         <Pagination
           current={currentPage}
           pageSize={pageSize}

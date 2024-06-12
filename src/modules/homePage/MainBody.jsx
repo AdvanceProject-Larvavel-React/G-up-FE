@@ -7,7 +7,7 @@ import Category from "../../global-components/core/CardCategory/Category";
 import BannerList from "./components/Banner";
 // import Search from "../../global-components/core/headers/inputs/Search";
 // import SearchChildren from "./components/Title";
-import Title from "./components/Title";
+// import Title from "./components/Title";
 import Store from "./components/Store";
 import Product from "./components/Product";
 import Discover from "./components/Discover";
@@ -110,23 +110,74 @@ export const MainBody = () => {
         </Col>
       </Row>
 
-      <Row style={{ justifyContent: "center" }}>
+      <Row
+        style={{
+          margin: "25px auto",
+          textAlignItem: "center",
+          textAlign: "center",
+          justifyContent: "center",
+          backgroundColor: "white",
+          borderRadius: 5,
+          height: 40,
+          width: 600,
+          marginTop: 40,
+          marginBottom: 40,
+        }}
+      >
+        <h4 style={{ textAlign: "center", marginTop: 5 }} className="Dtitle">
+          STUFF YOUR BANG WITH DEALS
+        </h4>
+      </Row>
+      {/* <Row style={{ justifyContent: "center" }}>
         <Col>
           <Title />
         </Col>
-      </Row>
+      </Row> */}
 
       <Row>
         <Col span={24}>
           <Product />
         </Col>
       </Row>
+      <Row
+        style={{
+          margin: "25px auto",
+          textAlignItem: "center",
+          textAlign: "center",
+          justifyContent: "center",
+          backgroundColor: "white",
+          borderRadius: 5,
+          height: 40,
+          width: 600,
+          marginTop: 30,
+          marginBottom: 40,
+        }}
+      >
+        <h4 style={{ textAlign: "center", marginTop: 5 }} className="Dtitle">
+          STORES
+        </h4>
+      </Row>
       <Row>
         <Col span={24}>
           <Store />
         </Col>
       </Row>
-      
+
+      <Row
+        style={{
+          justifyContent: "center",
+          backgroundColor: "white",
+          borderRadius: 10,
+          height: 40,
+          marginTop: 30,
+          marginBottom: 30,
+        }}
+      >
+        <h4 style={{ textAlign: "center", marginTop: 5 }} className="Dtitle">
+          DAILY DISCOVER
+        </h4>
+      </Row>
+
       <Row>
         <Col span={24}>
           <Discover data={filteredBestSellProds} />
