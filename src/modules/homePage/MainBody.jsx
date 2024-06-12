@@ -144,7 +144,7 @@ export const MainBody = () => {
         }}
       >
         <h4 style={{ textAlign: "center", marginTop: 5 }} className="Dtitle">
-          STUFF YOUR BANG WITH DEALS
+          STUFF YOUR BAG WITH DEALS
         </h4>
       </Row>
 
@@ -171,7 +171,7 @@ export const MainBody = () => {
           STORES
         </h4>
       </Row>
-      
+
       <Row>
         <Col span={24}>
           <Store />
