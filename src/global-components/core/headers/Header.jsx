@@ -132,5 +132,10 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
     },
+    navLink: {
+        color: 'white',
+        textDecoration: 'none',
+        padding: '10px',
+    },
 };
 export default Header;
