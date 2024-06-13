@@ -11,10 +11,14 @@ NavLink.propTypes = {
         text: PropTypes.string.isRequired
     }).isRequired
 };
-const styles = {
-    navLink: {
-        color: 'white',
-        textDecoration: 'none',
-        padding: '10px',
-    }
-}
+
+ const styles = {
+        navLinkItem: {
+            listStyleType: 'none',
+        },
+        navLink: {
+            color: 'white',
+            textDecoration: 'none',
+            padding: '10px',
+        },
+};
