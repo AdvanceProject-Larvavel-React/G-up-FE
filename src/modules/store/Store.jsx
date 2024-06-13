@@ -6,8 +6,8 @@ import Footer from "../../global-components/core/footers/Footer";
 import Header from "../../global-components/core/headers/Header";
 import HermesShop from "./components/HermesShop";
 import NavigationBar from "./components/NavigationBar";
-import { Card } from '../../global-components/core/CardProd/Card';
 import { useParams } from 'react-router-dom';
+import { CardFromStore } from '../../global-components/core/CardProd/CardFromStore';
 
 const Store = () => {
     const [products, setProducts] = useState([]);
@@ -78,7 +78,7 @@ const Store = () => {
                 <Row>
                     <Col span={2} />
                     <Col span={20} style={{ display: "flex", justifyContent: "center", flexDirection: "row", flexWrap: "wrap", marginRight: "30px" }}>
-                        <Card data={filteredProducts} />
+                        <CardFromStore data={filteredProducts} />
                         {pagination.total > 0 && (
                             <div style={{ width: "100%", display: "flex", justifyContent: "center", marginTop: "20px", marginRight:"30px" }}>
                                 <Pagination
