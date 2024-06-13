@@ -73,13 +73,6 @@ const CustomerRoutes = [
     { path: "index", element: <ContentSection /> },
     { path: "index/:id", element: <CategoryDetail /> },
     ]
-    path: "/support",
-    element: <Support />,
-    children: [
-      { path: "", element: <ContentSection /> },
-      { path: "index", element: <ContentSection /> },
-      { path: "index/:id", element: <CategoryDetail /> },
-    ],
   },
   {
     path: "/product/:id",
