@@ -1,6 +1,6 @@
 import { apiClient } from "./DefaultApis";
 
-const PRODUCT_ENDPOINT = "product";
+const PRODUCT_ENDPOINT = "/product";
 
 export const getActiveProducts = () => {
   return apiClient.get(`${PRODUCT_ENDPOINT}/get/active`);
@@ -15,27 +15,23 @@ export const getProductById = (id) => {
 };
 
 export const createProduct = (productData) => {
-  return apiClient.post(`${PRODUCT_ENDPOINT}/post/create`, productData, {
+  const formData = new FormData();
+  for (const key in productData) {
+    formData.append(key, productData[key]);
+  }
+  return apiClient.post(`${PRODUCT_ENDPOINT}/post/create`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 };
 
-export const getAllCategory = () => {
-  return apiClient.get("/category/get/all", {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+export const getAllCategories = () => {
+  return apiClient.get("/category/get/all");
 };
 
 export const updateProduct = (id, productData) => {
-  return apiClient.put(`${PRODUCT_ENDPOINT}/put/update/${id}`, productData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  return apiClient.put(`${PRODUCT_ENDPOINT}/put/update/${id}`, productData);
 };
 
 export const disableProduct = (id) => {

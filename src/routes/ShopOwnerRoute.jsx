@@ -8,11 +8,8 @@ import Setting from "../modules/profile/components/settings/Setting";
 import NotFoundPage from "../global-components/errors/NotFoundPage";
 import PrivateStoreOwner from "../modules/store-admin/layouts/PrivateStoreOwner";
 import Dashboard from "../modules/store-admin/dashboard/Dashboard";
-import ProductDashboard from "../modules/store-admin/manage-product/ProductDashboard";
+import ProductDashboards from "../modules/store-admin/manage-product/ProductDashboard";
 import ProductInactiveDashboard from "../modules/store-admin/manage-product/ProductInactiveDashboard";
-
-
-
 const storeOwnerRoutes = [
   {
     path: "",
@@ -23,8 +20,8 @@ const storeOwnerRoutes = [
         element: <Navigate to="/home"/>,
       },
       {path: "home",element: <Dashboard/>,},
-      {path: "list-product",element: <ProductDashboard/>,},
-      {path: "list-disable-product",element: <ProductInactiveDashboard/>,},
+      {path: "list-product",element: <ProductDashboards/>,},
+      {path: "list-disable-product",element:<ProductInactiveDashboard/>,},
       {
         path: "settings",
         element: <div>Settings</div>,
