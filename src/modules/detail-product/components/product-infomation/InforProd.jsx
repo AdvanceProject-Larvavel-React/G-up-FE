@@ -8,7 +8,7 @@ import RatingDisplay from "./RatingDisplay";
 import Voucher from "./Voucher";
 import Title from "antd/es/typography/Title";
 export const InforProd = (props) => {
-  const { name, price,sold, description } = props.prod;
+  const { name, price,sold, description, id } = props.prod;
   console.log(name);
   return (
     <>
@@ -33,7 +33,7 @@ export const InforProd = (props) => {
             <BuyNowButton />
           </Col>
           <Col span={12}>
-            <AddToCartButton />
+            <AddToCartButton idProd={id} />
           </Col>
         </Row>
       </Space>
