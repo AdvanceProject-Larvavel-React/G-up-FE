@@ -33,7 +33,7 @@ export const InforProd = (props) => {
             <BuyNowButton />
           </Col>
           <Col span={12}>
-            <AddToCartButton idProd={id} />
+            <AddToCartButton idProd={id} quantity={1} price={price}/>
           </Col>
         </Row>
       </Space>
