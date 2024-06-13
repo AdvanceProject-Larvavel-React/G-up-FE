@@ -11,6 +11,7 @@ import CategoryDetail from "../modules/support-page/CategoryDetail";
 import ContentSection from "../modules/support-page/components/Content";
 import { Index } from "../modules/detail-product/Index";
 import { FormCheckOut } from "../modules/cart/components/FormCheckOut.jsx";
+import Store from "../modules/store/Store";
 import { MainLayout } from "../layouts/MainLayout.jsx";
 import { MainBody } from "../modules/homePage/MainBody.jsx";
 import { CategoryBody } from "../modules/homePage/CategoryBody.jsx";
@@ -31,6 +32,7 @@ const CustomerRoutes = [
       { path: "store/all", element: <>Xem tất cả cửa hàng</>,},
     ],
   },
+  
   {
     path: "profile",
     element: <ProfileLayout />,
@@ -54,6 +56,23 @@ const CustomerRoutes = [
     ],
   },
   {
+
+    path: "store/:id",
+    children: [
+      {
+        path: "",
+        element: <Store />,
+      },
+    ],
+  },
+  {
+  path: "/support",
+  element: <Support />,
+  children: [
+    { path: "", element: <ContentSection /> },
+    { path: "index", element: <ContentSection /> },
+    { path: "index/:id", element: <CategoryDetail /> },
+    ]
     path: "/support",
     element: <Support />,
     children: [

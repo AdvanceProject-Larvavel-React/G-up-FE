@@ -1,0 +1,55 @@
+.hermes-shop {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+   
+}
+
+.hermes-header {
+    background-color: #f60;
+    padding: 20px;
+}
+
+.hermes-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 4px;
+   margin-left: 10px;
+  
+}
+
+.logo-text {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.shop-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.shop-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.follower-count {
+    font-size: 16px;
+    color: #666;
+    margin-top: 40px;
+
+}
+.follow-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
