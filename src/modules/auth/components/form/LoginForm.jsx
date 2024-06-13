@@ -29,20 +29,16 @@ const LoginForm = () => {
   const errorMessage = error?.status === false;
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-
   const showPopconfirm = () => {
     setOpen(true);
   };
-
   const handleOk = () => {
     setConfirmLoading(true);
-
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
     }, 0);
   };
-
   const handleCancel = () => {
     setOpen(false);
   };

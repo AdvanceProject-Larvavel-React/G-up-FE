@@ -58,6 +58,7 @@ const Text = styled.div`
 
 const Logout = () => {
   const dispatch = useDispatch();
+  
   const history = useNavigate();
 
   const handleLogout = () => {
