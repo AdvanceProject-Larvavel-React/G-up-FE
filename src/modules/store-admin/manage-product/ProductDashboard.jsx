@@ -1,9 +1,14 @@
 import { Button, Col, Modal, Row, Skeleton, Space, Table, message } from "antd";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { destroyProduct, disableProduct, getActiveProducts } from "../api/ProductApis";
+import {
+  createProduct,
+  destroyProduct,
+  disableProduct,
+  getActiveProducts,
+} from "../api/ProductApis";
 import { UpdateProduct } from "./components/UpdateProduct";
 import { convertDateToDDMMYYYY } from "../../../utils/date.utils";
+import CreateProductForm from "./components/CreateProductForm";
 
 const ProductDashboards = () => {
   const [activeProducts, setActiveProducts] = useState([]);
@@ -20,7 +25,7 @@ const ProductDashboards = () => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
-  const navigate = useNavigate();
+  const [createModalVisible, setCreateModalVisible] = useState(false);
 
   const fetchActiveProducts = async () => {
     try {
@@ -94,7 +99,8 @@ const ProductDashboards = () => {
   const showDeleteConfirm = (productId) => {
     Modal.confirm({
       title: "Delete Product",
-      content: "Do you want to delete this product permanently, disable it, or cancel?",
+      content:
+        "Do you want to delete this product permanently, disable it, or cancel?",
       okText: "Delete Permanently",
       cancelText: "Cancel",
       onOk: async () => {
@@ -224,7 +230,22 @@ const ProductDashboards = () => {
   ];
 
   const handleCreateProduct = () => {
-    navigate("/list-product/create");
+    setCreateModalVisible(true);
+  };
+
+  const handleCreateSubmit = async (values) => {
+    try {
+      setLoading(true);
+      const response = await createProduct(values);
+      message.success("Product created successfully");
+      setCreateModalVisible(false);
+      fetchActiveProducts();
+      console.log(response);
+    } catch (error) {
+      message.error("Failed to create product");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -283,6 +304,17 @@ const ProductDashboards = () => {
           product={selectedProduct}
           onUpdate={handleUpdate}
         />
+        <Modal
+          title="Create Product"
+          visible={createModalVisible}
+          onCancel={() => setCreateModalVisible(false)}
+          footer={null}
+        >
+          <CreateProductForm
+            onSubmit={handleCreateSubmit}
+            onCancel={() => setCreateModalVisible(false)}
+          />
+        </Modal>
       </Col>
     </Row>
   );
