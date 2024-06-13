@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 const initialState = {
   isAuth: localStorage.getItem('token') ? true : false,
   role: "",
   status: 'idle',
   error: null,
 };
-
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (userCredentials, { rejectWithValue }) => {
@@ -15,7 +13,10 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post('http://localhost:8000/api/auth/login', userCredentials);
       const token = response.data.token;
       const role = response.data.role;
-      return { token ,role};
+      const user = response.data.user;
+      
+      return { token ,role, user};
+
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -33,7 +34,6 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -41,6 +41,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       localStorage.removeItem('token');
+      localStorage.removeItem("userId");
+      localStorage.removeItem("user");
     },
     setInitialState: (state,action)=> {
       Object.assign(state, action.payload);
@@ -57,6 +59,9 @@ const authSlice = createSlice({
         state.role = action.payload.role;
         state.isAuthenticated = true;
         localStorage.setItem('token', action.payload.token);
+        localStorage.setItem('user',JSON.stringify(action.payload.user) );
+      localStorage.setItem('userId', action.payload.user.id);
+      
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';

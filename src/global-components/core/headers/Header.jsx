@@ -5,7 +5,7 @@ import { NavLink } from './buttons/NavLink';
 import { OptionLink } from './selects/OptionLink';
 import AuthLink from './buttons/AuthLink';
 import DeliverTo from './buttons/DeliverTo';
-import { Search } from './inputs/Search';
+import Search  from './inputs/Search';
 import { useEffect, useState } from 'react';
 const Header = () => {
     const [drawerVisible, setDrawerVisible] = useState(false);
@@ -40,10 +40,10 @@ const Header = () => {
                     {!isMobile && (
                         <Col sm={8} md={8} lg={8} xl={8} style={{ marginTop: '30px' }}>
                             <NavLink link="/home" text="Home" />
-                            <NavLink link="/store" text="Store" />
+                            <NavLink link="/checkout" text="Cart" />
                             <NavLink link="/category" text="Category" />
-                            <NavLink link="/community" text="Community" />
-                            <NavLink link="/gifts" text="Gifts" />
+                            <NavLink link="#" text="Community" />
+                            <NavLink link="#" text="Gifts" />
                         </Col>
                     )}
                     <Col span={6}>
@@ -56,7 +56,7 @@ const Header = () => {
                             <Badge count={1} style={{ marginRight: "15px" }}>
                                 <a href='#'><FontAwesomeIcon icon={faBell} style={{ width: "20px", fontSize: "20px" }} /></a>
                             </Badge>
-                            <NavLink link="/notification" text="Notification" />
+                            <NavLink link="#" text="Notification" />
                             <NavLink link="/support" text="Support" />
                             <NavLink link="/contact" text="Contact" />
                             <OptionLink options={servicesOption} />
@@ -92,11 +92,11 @@ const Header = () => {
                 >
                     <div style={{ display: "grid", gridColumn: "2", gap: "1", alignContent: "center" }}>
                         <NavLink link="/home" text="Home" />
-                        <NavLink link="/store" text="Store" />
+                        <NavLink link="/checkout" text="Store" />
                         <NavLink link="/category" text="Category" />
-                        <NavLink link="/community" text="Community" />
-                        <NavLink link="/gifts" text="Gifts" />
-                        <NavLink link="/notification" text="Notification" />
+                        <NavLink link="#" text="Community" />
+                        <NavLink link="#" text="Gifts" />
+                        <NavLink link="#" text="Notification" />
                         <NavLink link="/support" text="Support" />
                         <NavLink link="/contact" text="Contact" />
                         <center style={{ borderBottom: "1px solid white", padding: "20px" }}>
