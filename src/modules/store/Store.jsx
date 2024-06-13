@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Row, Col, message } from 'antd';
+import { Row, Col, message, Pagination } from 'antd';
 import "../store/styles/Store.css";
 import Footer from "../../global-components/core/footers/Footer";
 import Header from "../../global-components/core/headers/Header";
@@ -13,8 +13,13 @@ const Store = () => {
     const [products, setProducts] = useState([]);
     const [storeID, setStoreID] = useState(null);
     const [storeInfo, setStoreInfo] = useState({});
+    const [pagination, setPagination] = useState({
+        current: 1,
+        pageSize: 7,
+        total: 0,
+    });
     const { id } = useParams();
-    console.log("hahaehljafhasjfash:",storeInfo);
+
     const fetchStoreData = async () => {
         try {
             const storeResponse = await axios.get(`http://localhost:8000/api/store/get/by-id/${id}`);
@@ -27,11 +32,18 @@ const Store = () => {
         }
     };
 
-    const fetchProductsData = async () => {
+    const fetchProductsData = async (page = 1, pageSize = 3) => {
         try {
-            const productResponse = await axios.get("http://localhost:8000/api/product/get/active");
+            const productResponse = await axios.get("http://localhost:8000/api/product/get/active", {
+                params: { page, pageSize }
+            });
             const productsData = productResponse.data.data;
             setProducts(productsData);
+            setPagination({
+                current: productResponse.data.current_page,
+                pageSize: productResponse.data.per_page,
+                total: productResponse.data.total,
+            });
         } catch (error) {
             console.error("Error fetching products data:", error);
             message.error('Error fetching products data');
@@ -40,8 +52,12 @@ const Store = () => {
 
     useEffect(() => {
         fetchStoreData();
-        fetchProductsData();
-    }, []);
+        fetchProductsData(pagination.current, pagination.pageSize);
+    }, [pagination.current, pagination.pageSize]);
+
+    const handlePaginationChange = (page, pageSize) => {
+        setPagination({ ...pagination, current: page, pageSize });
+    };
 
     const filteredProducts = products.filter(product => product.store_id === storeID);
 
@@ -60,9 +76,21 @@ const Store = () => {
                     <Col span={24}> <NavigationBar /></Col>
                 </Row>
                 <Row>
-                    <Col span={2}/>
-                    <Col span={20} style={{ display: "flex", justifyContent:"center" }}>
+                    <Col span={2} />
+                    <Col span={20} style={{ display: "flex", justifyContent: "center", flexDirection: "row", flexWrap: "wrap", marginRight: "30px" }}>
                         <Card data={filteredProducts} />
+                        {pagination.total > 0 && (
+                            <div style={{ width: "100%", display: "flex", justifyContent: "center", marginTop: "20px", marginRight:"30px" }}>
+                                <Pagination
+                                    current={pagination.current}
+                                    pageSize={pagination.pageSize}
+                                    total={pagination.total}
+                                    onChange={handlePaginationChange}
+                                    showSizeChanger
+                                    pageSizeOptions={['7', '10', '20', '50'].map(String)}
+                                />
+                            </div>
+                        )}
                     </Col>
                     <Col span={2} />
                 </Row>

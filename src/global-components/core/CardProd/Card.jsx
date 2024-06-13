@@ -2,14 +2,12 @@ import { Link } from "react-router-dom";
 import "../../../assets/styles/CardShop.css";
 
 export const Card = ({ data }) => {
-  console.log("Props la : ", data);
-
   return (
     <>
       {data.map((product) => {
         const { id, name, description, price, sold, file_paths } = product;
         return (
-          <div className="card" key={id}>
+          <div className="card" key={id} style={{ marginRight: "30px" }} >
             <div
               className="card-img"
               style={{ backgroundImage: `url(${file_paths})` }}
