@@ -32,13 +32,16 @@ const Search = () => {
     <div>
       <form onSubmit={handleSearch}>
         <div className="search-container">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="What are you looking for?"
-            className="search-input"
-          ></input>
+          <div className="input1">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="What are you looking for?"
+              className="search-input"
+            ></input>
+          </div>
+
           <div className="icon1">
             <button type="submit" className="search-button">
               <FaSearch />
