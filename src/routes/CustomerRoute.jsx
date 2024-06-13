@@ -48,7 +48,7 @@ const CustomerRoutes = [
     ],
   },
   {
-    path: "store",
+    path: "store/:id",
     children: [
       {
         path: "",

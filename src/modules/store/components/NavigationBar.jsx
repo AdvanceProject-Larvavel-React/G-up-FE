@@ -84,7 +84,13 @@ const NavigationBar = () => {
           ))}
         </Row>
       </div>
-      <Carousel autoplay ref={carouselRef}>
+      <Carousel
+        autoplay
+        ref={carouselRef}
+        afterChange={(current) => {
+          setActiveKey(items[current].key);
+        }}
+      >
         {carouselItems.map((src, index) => (
           <div key={index} className="carousel-content">
             <img src={src} alt={items[index].title} style={{ width: '100%', height: '600px' }} />
