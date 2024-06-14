@@ -4,16 +4,16 @@ import '../styles/HermesShop.css';
 import FollowBtn from "./FollowBtn";
 
 const HermesShop = (props) => {
-    const { name } = props.data;
+    const { name, avatar } = props.data;
     return (
         <Row>
             <Col span={1} />
-            <Col span={2}>
+            <Col span={3}>
                 <div className="logo">
-                    <img src="https://res.cloudinary.com/dvgiuwfuv/image/upload/v1717243048/G-UP-Project/Orange_E-commerce_Online_Store_Logo_1_1_shq7ml.png" alt="Hermes" />
+                    <img src={avatar} alt="Hermes" width={"150px"} height={"150px"} style={{margin:"10px", borderRadius:"14px"}} />
                 </div>
             </Col>
-            <Col span={10}>
+            <Col span={9}>
                 <div className="follower-count">
                     <span style={{ fontWeight: 'bold', fontSize: '25px' }}>{name}</span> <br />
                     <span> <StarOutlined style={{ color: 'yellow', fontSize: '20px' }} />4.5/50 | 629.4K FOLLOWERS</span>

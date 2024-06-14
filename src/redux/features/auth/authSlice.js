@@ -13,9 +13,7 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post('http://localhost:8000/api/auth/login', userCredentials);
       const token = response.data.token;
       const role = response.data.role;
-      const user = response.data.user;
-      
-      return { token ,role, user};
+      return { token ,role};
 
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -59,8 +57,6 @@ const authSlice = createSlice({
         state.role = action.payload.role;
         state.isAuthenticated = true;
         localStorage.setItem('token', action.payload.token);
-        localStorage.setItem('user',JSON.stringify(action.payload.user) );
-        localStorage.setItem('userId', action.payload.user.id);
       
       })
       .addCase(loginUser.rejected, (state, action) => {

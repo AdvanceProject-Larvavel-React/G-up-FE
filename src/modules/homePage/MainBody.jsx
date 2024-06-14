@@ -1,16 +1,17 @@
-import { Row, Col } from "antd";
-import { useEffect, useState } from "react";
+import { Col, Row, message } from "antd";
 import axios from "axios";
-import { message } from "antd";
-import "./styles/MainBody.css";
-import Category from "../../global-components/core/CardCategory/Category";
+import { useEffect, useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import BannerList from "./components/Banner";
+import "./styles/MainBody.css";
 // import Search from "../../global-components/core/headers/inputs/Search";
 // import SearchChildren from "./components/Title";
 // import Title from "./components/Title";
-import Store from "./components/Store";
-import Product from "./components/Product";
+import CategoryCard from "../../global-components/core/CardCategory/Category";
 import Discover from "./components/Discover";
+import Product from "./components/Product";
+import Store from "./components/Store";
 
 export const MainBody = () => {
   const [products, setProducts] = useState([]);
@@ -91,7 +92,13 @@ export const MainBody = () => {
   console.log("Thông tin sản phẩm bán ra nhiều hơn 100", filteredBestSellProds);
   console.log("Thông tin của store:", storeInfo);
   console.log("Category:", categories);
+  const chunkSize = 4; // Số lượng thẻ mỗi slide
 
+  // Chia mảng categories thành các mảng con với chunkSize phần tử
+  const chunkedCategories = [];
+  for (let i = 0; i < categories.length; i += chunkSize) {
+    chunkedCategories.push(categories.slice(i, i + chunkSize));
+  }
   return (
     <>
       <Row
@@ -115,11 +122,29 @@ export const MainBody = () => {
 
       <Row className="catego " gutter={[16, 16]}>
         <Col span={0.5}></Col>
-        {categories.map((category) => (
+        {/* {categories.map((category) => (
           <Col span={5} key={category.id}>
             <Category category={category} />
           </Col>
-        ))}
+        ))} */}
+        <Carousel
+          showThumbs={false}
+          infiniteLoop
+          useKeyboardArrows
+          autoPlay
+          showArrows={true}
+          showStatus={true}
+          showIndicators={false}
+          emulateTouch
+        >
+          {chunkedCategories.map((chunk, index) => (
+            <div key={index} style={{display:"flex", flex:"wrap" , maxWidth: '1200px', margin: '10px auto' }}>
+              {chunk.map((category, idx) => (
+                <CategoryCard key={idx} category={category} />
+              ))}
+            </div>
+          ))}
+        </Carousel>
         <Col span={1}></Col>
       </Row>
 

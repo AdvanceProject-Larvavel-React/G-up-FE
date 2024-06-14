@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AddToCartButton = ({ idProd, quantity, price }) => {
+  console.log(price);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [IdUser, setUserID] = useState(null);

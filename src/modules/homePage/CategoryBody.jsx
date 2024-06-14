@@ -46,10 +46,10 @@ export const CategoryBody = () => {
         <FaChevronLeft className="back" size={24} />
       </Link>
       <h2 className="titleCa text-center">{header}</h2>
-      <Row className="catego " gutter={[16, 16]}>
+      <Row className="catego " gutter={[16, 16]} justify="center">
         <Col span={0.5}></Col>
         {filteredProd.map((prod) => (
-          <Col span={5} key={prod.id}>
+          <Col span={4} key={prod.id}>
             <Card data={prod} />
           </Col>
         ))}

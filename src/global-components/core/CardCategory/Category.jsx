@@ -11,7 +11,7 @@ const   CategoryCard = ({ category }) => {
       <p className="text-title">{category.name}</p>
       <div
         className="card-img"
-        style={{ backgroundImage: `url(${category.img})` }}
+        style={{ backgroundImage: `url(${category.file_paths})` }}
       ></div>
       {category.additionalInfo && (
         <p>Additional Info: {category.additionalInfo}</p>
