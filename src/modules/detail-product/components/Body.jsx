@@ -5,7 +5,7 @@ import {  Spin } from "antd";
 import { DetailProd } from "./product-infomation/Layout";
 import DescProd from "./product-description/Layout";
 import { SectionDivider } from "./global/SectionDivider";
-import { YouMayAlso } from "./you-may-also-like/Layout";
+// import { YouMayAlso } from "./you-may-also-like/Layout";
 import { ProductRevi } from "./product-review/Layout";
 
 const Body = () => {
@@ -50,9 +50,9 @@ const Body = () => {
                   <ProductRevi data={productData}/>
                 {/* Component ProductReview */}
             </div>
-            <SectionDivider title="YOU MAY ALSO LIKE" />
+            {/* <SectionDivider title="YOU MAY ALSO LIKE" /> */}
             <div className="product-recommendations">
-              <YouMayAlso data={productData}/>
+              {/* <YouMayAlso data={productData}/> */}
                 {/* Component recommendations */}
             </div>
         </div>
