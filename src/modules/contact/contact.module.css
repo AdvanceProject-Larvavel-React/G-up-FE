@@ -2,6 +2,7 @@
   padding: 0 32px;
   margin-top: 20px;
 }
+
 .contact__list {
   display: flex;
   align-items: center;
@@ -22,7 +23,7 @@
 
 .contact__text-heading {
   font-size: 48px;
-  color: #E0719D;
+  color: #d61936; 
   margin-bottom: 48px;
   letter-spacing: 8px;
 }
@@ -43,7 +44,7 @@
 .contact__decs-email:hover a,
 .contact__decs-phone:hover a {
   opacity: 0.8;
-  color: #a48ff7;
+  color: #ff7270;
   transition: all 0.3s linear;
 }
 
@@ -56,9 +57,11 @@
   padding: 0 32px;
   padding-top: 12px;
 }
+
 .contact__form-item {
   margin-bottom: 16px;
 }
+
 .contact__form-item label {
   font-size: 14px;
   font-weight: 600;
@@ -78,13 +81,13 @@
 
 .contact__form-item input:focus,
 .contact__form-item textarea:focus {
-  border: 2px solid rgb(20 184 166);
+  border: 2px solid #d23e5b; 
 }
 
 .contact__form-btn button {
   font-size: 14px;
   padding: 12px 20px;
-  background-color: rgb(20 184 166);
+  background-color: #d23e5b;
   color: #fff;
   outline: none;
   border-radius: 8px;
@@ -93,12 +96,13 @@
   cursor: pointer;
   transition: all 0.3s linear;
   font-weight: 700;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .contact__form-btn button:hover {
   opacity: 0.8;
-  color: #f9a8d4;
-  background-color: #a48ff7;
+  color: #f9a8bb; /* Màu chuyển đổi khi hover */
+  background-color: #a48ff7; /* Màu nền chuyển đổi khi hover */
 }
 
 .contact__form-btn p a {
@@ -107,13 +111,14 @@
 }
 
 .contact__form-btn p a:hover {
-  color: #f9a8d4;
+  color: #ee5d86; /* Màu chuyển đổi khi hover */
 }
 
 @media (max-width: 576px) {
   .contact__container {
     padding: 0 8px;
   }
+
   .contact__list {
     display: flex;
     flex-direction: column;

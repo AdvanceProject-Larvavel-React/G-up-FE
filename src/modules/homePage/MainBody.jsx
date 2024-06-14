@@ -114,13 +114,13 @@ export const MainBody = () => {
       </Row>
 
       <Row className="catego " gutter={[16, 16]}>
-        <Col span={2}></Col>
+        <Col span={0.5}></Col>
         {categories.map((category) => (
-          <Col span={4} key={category.id}>
+          <Col span={5} key={category.id}>
             <Category category={category} />
           </Col>
         ))}
-        <Col span={2}></Col>
+        <Col span={1}></Col>
       </Row>
 
       <Row>

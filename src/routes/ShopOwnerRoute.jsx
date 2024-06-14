@@ -20,6 +20,7 @@ const storeOwnerRoutes = [
         element: <Navigate to="/home"/>,
       },
       {path: "home",element: <Dashboard/>,},
+      {path: "dashboard",element: <Dashboard/>,},
       {path: "list-product",element: <ProductDashboards/>,},
       {path: "list-disable-product",element:<ProductInactiveDashboard/>,},
       {

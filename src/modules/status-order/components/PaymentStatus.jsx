@@ -105,11 +105,11 @@ const PaymentStatus = () => {
         <Footer>
           <Space direction="horizontal">
             {message === "Successful." ? (
-              <Button type="primary" key="history" href="/history">
+              <Button type="primary" key="history" href="/checkout">
                 SHOW
               </Button>
             ) : (
-              <Button type="primary" key="retry" href="/cart">
+              <Button type="primary" key="retry" href="/checkout">
                 Return to payment page
               </Button>
             )}

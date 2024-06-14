@@ -1,24 +1,30 @@
-import { Row, message,Col } from "antd";
+import { Col, Row, message } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useParams,Link } from "react-router-dom";
-import "./styles/CategoryBody.css";
-import { Card } from "../../global-components/core/CardProd/Card";
 import { FaChevronLeft } from "react-icons/fa";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { Card } from "../../global-components/core/CardProd/Card";
+import "./styles/CategoryBody.css";
 
 export const CategoryBody = () => {
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
   const { id } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("query");
-  const header = decodeURIComponent(query);
+  const header = query ? decodeURIComponent(query) : "Category";
 
   const fetchProductsData = async () => {
     try {
       const response = await axios.get(
         "http://localhost:8000/api/product/get/active"
       );
+      const categoryData = await axios.get(
+        "http://localhost:8000/api/category/get/active"
+      );
+      console.log(categoryData);
+      setCategory(categoryData.data.data);
       const productData = response.data.data;
       setProducts(productData);
       console.log(products);
@@ -31,9 +37,9 @@ export const CategoryBody = () => {
     fetchProductsData();
   }, []);
 
-  const filteredProd = products.filter(
-    (product) => product.category_id === parseInt(id, 10)
-  );
+  const filteredProd = id
+    ? products.filter((product) => product.category_id === parseInt(id, 10))
+    : category;
   return (
     <>
       <Link to={`/home`} className="category-link">
@@ -41,13 +47,13 @@ export const CategoryBody = () => {
       </Link>
       <h2 className="titleCa text-center">{header}</h2>
       <Row className="catego " gutter={[16, 16]}>
-        <Col span={2}></Col>
+        <Col span={0.5}></Col>
         {filteredProd.map((prod) => (
-          <Col span={4} key={prod.id}>
+          <Col span={5} key={prod.id}>
             <Card data={prod} />
           </Col>
         ))}
-        <Col span={2}></Col>
+        <Col span={1}></Col>
       </Row>
     </>
   );
