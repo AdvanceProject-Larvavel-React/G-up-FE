@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo-gup.png";
+import Logout from "../../../global-components/core/button/Logout";
 const { Header, Content, Sider } = Layout;
 const { SubMenu, Item } = Menu;
 
@@ -88,8 +89,9 @@ const ShopOwnerLayout = () => {
             unCheckedChildren="☀️"
             checked={darkMode}
             onChange={handleThemeChange}
-            style={{ flex: 0 }}
+            style={{ flex: 0, marginRight: "30px" }}
           />
+          <Logout style={{ flex: 0, marginRight: "30px" }} />
         </Header>
         <Layout>
           <Sider
