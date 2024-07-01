@@ -1,15 +1,34 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AddToCartButton = ({ idProd, quantity, price }) => {
+  console.log(price);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  const [IdUser, setUserID] = useState(null);
+  console.log(error, IdUser);
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const userData = response.data.data;
+        setUserID(userData.id);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+    fetchProfileData();
+  }, []);
   const handle = async () => {
-    const userId = localStorage.getItem('userId');
+    const userId = IdUser;
     const payload = {
       items: [
         {
@@ -18,7 +37,8 @@ const AddToCartButton = ({ idProd, quantity, price }) => {
         }
       ],
       total: quantity*price,
-      user_id: userId
+      user_id: userId,
+      id:userId,
     };
 
     try {

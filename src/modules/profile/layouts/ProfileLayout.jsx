@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import SideBar from "../../../global-components/core/side-bars/SideBar";
 import styles from "./profileLayout.module.css";
+import Header from "../../../global-components/core/headers/Header";
 const ProfileLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ const ProfileLayout = () => {
   return (
     <>
       <div>
+        <Header/>
         <div className={`${styles["container"]}`}>
           <SideBar className={`${styles["sidebar"]}`} />
           <div className={`${styles["child"]}`}>

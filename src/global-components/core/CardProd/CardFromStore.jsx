@@ -7,7 +7,7 @@ export const CardFromStore = ({ data }) => {
             {data.map((product) => {
                 const { id, name, description, price, sold, file_paths } = product;
                 return (
-                    <div className="card" key={id} style={{ marginRight: "30px" }} >
+                    <div className="card" key={id} style={{ marginRight: "30px",marginTop:"30px",marginBottom:"30px", border:"1px solid black" }} >
                         <div
                             className="card-img"
                             style={{ backgroundImage: `url(${file_paths})` }}

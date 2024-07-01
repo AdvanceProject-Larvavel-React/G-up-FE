@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import "../../../assets/styles/CardProd.css";
 export const Card = (props) => {
+<<<<<<< HEAD
   const { name: prodName, price, description, sold, file_paths, id } = props.data;
+=======
+  const {
+    name: prodName,
+    price,
+    description,
+    sold,
+    file_paths,
+    id,
+  } = props.data;
+>>>>>>> e475ae3a7c76137ed1f6a539f46323404cb0e2d6
   return (
     <div className="card">
       <div

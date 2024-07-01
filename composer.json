@@ -1,5 +1,6 @@
 {
     "require": {
+        "livewire/livewire": "*"
         "livewire/livewire": "^3.5"
     }
 }

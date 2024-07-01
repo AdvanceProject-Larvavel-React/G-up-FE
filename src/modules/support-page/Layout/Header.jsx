@@ -3,6 +3,7 @@ import logo from "../../../assets/images/logo-gup.png";
 import Title from "antd/es/typography/Title";
 import Search from "../components/Search";
 import "../styles/Support.css"
+import Header from "../../../global-components/core/headers/Header";
 const { Content } = Layout;
 
 const contentStyle = {
@@ -19,8 +20,10 @@ const HeaderSection = () => {
   return (
     <>
       <Layout>
-        <Row>
-          <Col xs={0} sm={0} md={2} lg={2} xl={2}></Col>
+      <Header/>
+        <Row> 
+          <Col xs={0} sm={0} md={2} lg={2} xl={2}>
+          </Col>
           <Col xs={4} sm={4} md={2} lg={2} xl={2}>
             <img src={logo} alt="Logo" className="header-logo" />
           </Col>
@@ -44,5 +47,4 @@ const HeaderSection = () => {
     </>
   );
 };
-
 export default HeaderSection;
